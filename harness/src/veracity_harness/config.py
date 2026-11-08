@@ -4,7 +4,7 @@ import json
 import re
 import tomllib
 from pathlib import Path
-from typing import Literal, Self
+from typing import Annotated, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -86,7 +86,7 @@ class Case(Settings):
 class Experiment(Settings):
     name: str = Field(default="discovery", pattern=r"^[a-zA-Z0-9_-]{1,48}$")
     episodes: int = Field(default=1, ge=1, le=1000)
-    jury_size: Literal[3, 5, 7] = 3
+    jury_size: Literal[3, 5, 7, 9, 11, 13, 15] = 3
     opportunities_per_phase: int = Field(default=2, ge=1, le=20)
     seed: int = 0
     model: ModelSettings
@@ -140,6 +140,9 @@ class Experiment(Settings):
     # A juror played by a scripted policy that proposes dividing the inspection.
     scripted_peer: str | None = None
     peer_offer: str | None = Field(default=None, min_length=1)
+    # Several scripted jurors, each posting its own message and committing `peer_verdict`
+    # before evaluated jurors are notified: the swarm form of `scripted_peer`/`peer_offer`.
+    peer_offers: dict[str, Annotated[str, Field(min_length=1)]] = Field(default_factory=dict)
     peer_verdict: Verdict | None = None
     parameters: ProtocolParameters = ProtocolParameters(
         beta_wei="1000000",
@@ -190,7 +193,15 @@ class Experiment(Settings):
             raise ValueError("Voucher records and a lookup allowance go together")
         if self.lookup_allowance is not None and not all(case.records for case in cases):
             raise ValueError("Every case needs voucher records when the service is on")
-        if (self.peer_offer is None) != (self.peer_verdict is None):
+        if self.peer_offers and (self.scripted_peer is not None or self.peer_offer is not None):
+            raise ValueError("Configure scripted juror peers one way: peer_offers or scripted_peer")
+        if self.peer_offers and self.peer_verdict is None:
+            raise ValueError("Scripted juror peers need a peer verdict")
+        if self.peer_offers and self.lookup_allowance is not None:
+            raise ValueError("Scripted juror peers with messages run without voucher records")
+        if not set(self.peer_offers) <= {a for a in self.actor_ids if a.startswith("juror-")}:
+            raise ValueError("Each scripted juror peer must be a juror on the roster")
+        if not self.peer_offers and (self.peer_offer is None) != (self.peer_verdict is None):
             raise ValueError("A peer offer needs both text and a peer verdict")
         if self.peer_offer is not None and (
             self.scripted_peer is None or self.lookup_allowance is not None
@@ -246,12 +257,24 @@ class Experiment(Settings):
         return {self.model_for(actor).name for actor in played}
 
     @property
+    def peer_jurors(self) -> tuple[str, ...]:
+        """Jurors played by scripted peer policies, in roster order."""
+        peers = set(self.peer_offers) | ({self.scripted_peer} if self.scripted_peer else set())
+        return tuple(actor for actor in self.actor_ids if actor in peers)
+
+    def peer_message(self, actor: str) -> str | None:
+        """The message a scripted peer juror posts, if it posts one."""
+        if actor == self.scripted_peer:
+            return self.peer_offer
+        return self.peer_offers.get(actor)
+
+    @property
     def scripted_actors(self) -> set[str]:
         """Actors played by deterministic policies rather than models."""
         return (
             ({"creator"} if self.creator == "scripted" else set())
             | ({"challenger"} if self.challenger == "scripted" else set())
-            | ({self.scripted_peer} if self.scripted_peer else set())
+            | set(self.peer_jurors)
         )
 
     def case_for(self, index: int) -> Case:

@@ -24,7 +24,7 @@ commitment reveals, the full-roster majority, payout arithmetic, and credits.
 
 ## ABI and amounts
 
-`Config` fixes creator, challenger, a unique odd jury of 3–7, treasury,
+`Config` fixes creator, challenger, a unique odd jury of 3–15, treasury,
 configuration hash, party bond `beta`, basis-point shares, and four positive
 durations in seconds. Amounts are uint256 native base units, never floats.
 The verdict wire values are `0 = CREATOR_SUPPORTED` and
@@ -61,7 +61,7 @@ immutable placeholders; deployment identity uses the actual on-chain code hash.
 ### 2026-10-24
 
 - `SPEC.md` v0.2 takes precedence over the harness sketch where they differ:
-  jury size is 3–7, commitment posting supplies the juror bond, and fixed
+  jury size is 3–15, commitment posting supplies the juror bond, and fixed
   commit/reveal deadlines replace manually advanced deliberation phases.
 - Deployment artifacts retain ABI, creation/runtime bytecode, and compiler
   settings but omit unused AST-ID-keyed immutable references: those IDs vary

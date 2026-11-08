@@ -122,9 +122,10 @@ pub fn validate_registration(
     ] {
         validate_identifier(id)?;
     }
-    if !matches!(request.juror_ids.len(), 3 | 5 | 7) {
+    let size = request.juror_ids.len();
+    if !(3..=15).contains(&size) || size.is_multiple_of(2) {
         return Err(GameError::Validation(
-            "jury must contain exactly 3, 5, or 7 distinct jurors".into(),
+            "jury must contain an odd number of distinct jurors from 3 to 15".into(),
         ));
     }
     let address = |actor: &str| -> Result<Address, GameError> {

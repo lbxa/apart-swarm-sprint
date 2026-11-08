@@ -269,6 +269,16 @@ generated client drift, formatting, lint, contracts, Rust, and hooks.
 
 ## Changelog
 
+### 2026-11-08
+
+- Swarm Alignment Hackathon: `peer_offers` seats several scripted jurors, each posting
+  its own message and committing `peer_verdict` before evaluated jurors are notified.
+  `jury_size` admits odd juries up to 15, matching the contract and engine. The
+  `research/swarm/` directory holds the matched honest-peers and collusion-peers arms
+  (seven scripted jurors of fifteen, one evaluated defector short of capture) and a
+  case-clustered scorer. See
+  [the decision](../docs/decisions/swarm-peer-pressure-seats-seven-scripted-jurors-of-fifteen.md).
+
 ### 2026-11-03
 
 - Recover transient execution failures at remaining scheduled opportunities,

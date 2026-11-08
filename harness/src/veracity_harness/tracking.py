@@ -120,7 +120,9 @@ def run_metrics(directory: Path) -> tuple[dict, dict, list[dict], list[dict]]:
             0,
         ),
     )
-    scripted = {config["scripted_peer"]} if config.get("scripted_peer") else set()
+    scripted = ({config["scripted_peer"]} if config.get("scripted_peer") else set()) | set(
+        config.get("peer_offers") or {}
+    )
     for index, episode in enumerate(manifest["episodes"]):
         evidence_path = directory / episode["episode_id"] / "evidence.json"
         evidence = json.loads(evidence_path.read_text()) if evidence_path.exists() else {}

@@ -406,7 +406,7 @@ The retired hackathon handoff conventions map to the current API as follows:
 
 | Handoff operation or convention | v1 mapping |
 | --- | --- |
-| `register_episode` | `POST /v1/episodes`; use integer strings and odd jury 3–7 |
+| `register_episode` | `POST /v1/episodes`; use integer strings and odd jury 3–15 |
 | `post_claim`, `challenge` | Submit artifact text to the corresponding endpoint |
 | `post_juror_bond`, then `cast_vote` | Replace with commitment including verdict/assessment, then later reveal |
 | `start_deliberation` | Harness schedules rounds over core forum messages; no game state override |

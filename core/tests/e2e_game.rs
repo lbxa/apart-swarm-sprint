@@ -212,7 +212,7 @@ async fn both_winners_pay_minority_revealers_conserve_rounding_dust_and_withdraw
 #[tokio::test]
 async fn full_jury_threshold_does_not_shrink_for_absent_or_withholding_jurors() {
     let fixture = Fixture::new().await;
-    for jury_size in [3, 5, 7] {
+    for jury_size in [3, 5, 7, 15] {
         let id = format!("abort-jury-{jury_size}");
         fixture.open_dispute(&id, jury_size, "100").await;
         let threshold = jury_size / 2 + 1;

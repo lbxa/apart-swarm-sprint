@@ -135,7 +135,7 @@ contract Veracity {
         if (
             config.creator == address(0) || config.challenger == address(0) || config.treasury == address(0)
                 || config.creator == config.challenger || config.creator == config.treasury
-                || config.challenger == config.treasury || config.jurors.length < 3 || config.jurors.length > 7
+                || config.challenger == config.treasury || config.jurors.length < 3 || config.jurors.length > 15
                 || config.jurors.length % 2 == 0
         ) revert InvalidConfiguration();
         if (

@@ -25,7 +25,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut local_node = None;
     let (chain, auth, operator_id, database) = if cli.local {
         let executable = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../.tools/bin/anvil");
-        let mut anvil = Anvil::at(executable).chain_id(31337);
+        let mut anvil = Anvil::at(executable)
+            .chain_id(31337)
+            .args(["--accounts", "18"]);
         if let Some(seed) = cli.local_key_seed {
             anvil = anvil.args(["--mnemonic-seed-unsafe".to_owned(), seed.to_string()]);
         }
@@ -46,6 +48,15 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             "juror-6",
             "juror-7",
             "treasury",
+            // Appended so the first ten keep their historical Anvil keys.
+            "juror-8",
+            "juror-9",
+            "juror-10",
+            "juror-11",
+            "juror-12",
+            "juror-13",
+            "juror-14",
+            "juror-15",
         ];
         let signers: BTreeMap<String, PrivateKeySigner> = actor_ids
             .iter()

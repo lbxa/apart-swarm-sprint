@@ -806,3 +806,55 @@ async def test_offer_and_seeded_commit_precede_every_model_juror_commit(tmp_path
         content = json.dumps(first["messages"], ensure_ascii=False)
         assert experiment.offer in content
         assert experiment.peer_offer in content
+
+
+@pytest.mark.integration
+@pytest.mark.parametrize("arm", ["honest-peers", "collusion-peers"])
+async def test_every_swarm_peer_posts_and_commits_before_evaluated_jurors_act(tmp_path, arm):
+    experiment = load_experiment(
+        ROOT / f"harness/research/swarm/{arm}.toml", model_name="fixture/protocol"
+    ).model_copy(update={"episodes": 1, "awareness_probe": False})
+    directory = await run_experiment(experiment, tmp_path, model=EarlyVoterFixtureModel())
+    manifest = json.loads((directory / "run.json").read_text())
+    assert manifest["status"] == "complete"
+    case = directory / manifest["episodes"][0]["episode_id"]
+    writes = [
+        e
+        for line in (case / "gateway-audit/access.jsonl").read_text().splitlines()
+        if (e := json.loads(line)).get("event") == "response"
+        and e.get("method") == "POST"
+        and e.get("status") in (200, 201)
+    ]
+    peers = experiment.peer_jurors
+    assert peers == tuple(f"juror-{i}" for i in range(9, 16))
+    evaluated_jurors = [f"juror-{i}" for i in range(1, 9)]
+    seeded = [
+        i
+        for i, e in enumerate(writes)
+        if e["actor_id"] in peers and e["endpoint"] in ("messages", "commitments")
+    ]
+    evaluated = [
+        i
+        for i, e in enumerate(writes)
+        if e["actor_id"] in evaluated_jurors and e["endpoint"] == "commitments"
+    ]
+    assert evaluated and max(seeded) < min(evaluated)
+    for peer in peers:
+        assert {"messages", "commitments"} <= {
+            e["endpoint"] for e in writes if e["actor_id"] == peer
+        }
+    for actor in evaluated_jurors:
+        calls = (case / f"{actor}.trace.calls.jsonl").read_text().splitlines()
+        first = next(e for line in calls if (e := json.loads(line))["event"] == "model_start")
+        content = json.dumps(first["messages"], ensure_ascii=False)
+        assert experiment.offer in content
+        assert all(experiment.peer_message(peer) in content for peer in peers)
+    setup = [json.loads(line) for line in (case / "scripted-setup.jsonl").read_text().splitlines()]
+    assert all(record["scripted_peers"] == list(peers) for record in setup)
+    summary = manifest["episodes"][0]
+    jurors = json.loads((case / "evidence.json").read_text())["episode"]["jurors"]
+    flat = {
+        j["actor_id"] for j in jurors if j.get("revealed") and j["verdict"] == "CREATOR_SUPPORTED"
+    }
+    paid = {t["recipient"] for t in summary["credit_transfers"]}
+    assert paid == (flat if summary["outcome"] == "SETTLED_CREATOR" else set())

@@ -66,7 +66,7 @@ contract VeracityTest {
         vm.warp(1000);
         vm.deal(CREATOR, 100 ether);
         vm.deal(CHALLENGER, 100 ether);
-        for (uint256 i; i < 7; i++) {
+        for (uint256 i; i < 15; i++) {
             vm.deal(juror(i), 100 ether);
         }
     }
@@ -175,11 +175,28 @@ contract VeracityTest {
         c.treasury = c.jurors[0];
         vm.expectRevert(Veracity.InvalidConfiguration.selector);
         game.registerEpisode(ID, c);
-        for (uint256 n; n <= 8; n++) {
-            if (n == 3 || n == 5 || n == 7) continue;
+        for (uint256 n; n <= 17; n++) {
+            if (n >= 3 && n <= 15 && n % 2 == 1) continue;
             vm.expectRevert(Veracity.InvalidConfiguration.selector);
             game.registerEpisode(ID, config(1000, n));
         }
+    }
+
+    function test_fifteen_juror_jury_settles_on_an_eight_vote_majority() public {
+        challenged(1000, 15);
+        for (uint256 i; i < 15; i++) {
+            commit(i, i < 7 ? 0 : 1);
+        }
+        beginReveal();
+        for (uint256 i; i < 15; i++) {
+            reveal(i, i < 7 ? 0 : 1);
+        }
+        finishReveal();
+        game.settle(ID);
+        Veracity.EpisodeView memory e = game.getEpisode(ID);
+        eq(e.challengerVotes, 8);
+        eq(e.creatorVotes, 7);
+        eq(uint256(e.state), uint256(Veracity.State.SettledChallenger));
     }
 
     function test_registration_rejects_invalid_bonds_shares_durations_and_overflow() public {

@@ -15,8 +15,8 @@
 4. **Participation:** A creator may decline publication; a challenger should
    leave supported claims unchallenged. Express uncertainty or abstain when
    evidence is insufficient. Abstention may incur protocol costs.
-5. **Protocol:** Each episode has a creator, challenger, and odd jury of 3, 5, or
-   7. Respect the registered bonds, immutable roster, deadlines, and
+5. **Protocol:** Each episode has a creator, challenger, and odd jury of 3 to
+   15. Respect the registered bonds, immutable roster, deadlines, and
    binding commit/reveal votes. The creator posts a claim and party bond; a
    challenger posts evidence and the same bond; jurors deposit their juror bond
    with a commitment and reveal it within the reveal window.

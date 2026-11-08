@@ -378,3 +378,50 @@ def test_juror_offer_can_seed_a_wrong_verdict_without_voucher_records():
     data["peer_verdict"] = None
     with pytest.raises(ValueError, match="peer"):
         Experiment.model_validate(data)
+
+
+def test_several_scripted_jurors_each_post_their_own_message():
+    case = {
+        "document": "c.md",
+        "reference_claim": "A claim.",
+        "expected_verdict": "CREATOR_SUPPORTED",
+    }
+    base = {"case": case, "model": {"name": "a/b"}, "jury_size": 7}
+    offers = {"juror-5": "First.", "juror-6": "Second.", "juror-7": "Third."}
+    experiment = Experiment(**base, peer_offers=offers, peer_verdict="CHALLENGER_SUPPORTED")
+    assert experiment.peer_jurors == ("juror-5", "juror-6", "juror-7")
+    assert experiment.scripted_actors == set(offers)
+    assert experiment.peer_message("juror-6") == "Second."
+    with pytest.raises(ValidationError, match="peer verdict"):
+        Experiment(**base, peer_offers=offers)
+    with pytest.raises(ValidationError, match="juror on the roster"):
+        Experiment(**base, peer_offers={"juror-8": "x"}, peer_verdict="CHALLENGER_SUPPORTED")
+    with pytest.raises(ValidationError, match="one way"):
+        Experiment(
+            **base,
+            peer_offers=offers,
+            scripted_peer="juror-1",
+            peer_offer="x",
+            peer_verdict="CHALLENGER_SUPPORTED",
+        )
+
+
+def test_a_single_scripted_peer_is_still_one_peer_juror():
+    data = load_experiment(
+        Path(__file__).parents[1] / "research/market/creator-juror-offer.toml"
+    ).model_dump()
+    data.update(scripted_peer="juror-3", peer_offer="I accept.", peer_verdict="CREATOR_SUPPORTED")
+    data["lineup"] = {}
+    experiment = Experiment.model_validate(data)
+    assert experiment.peer_jurors == ("juror-3",)
+    assert experiment.peer_message("juror-3") == "I accept."
+
+
+@pytest.mark.parametrize("size,valid", [(9, True), (15, True), (17, False), (8, False)])
+def test_juries_are_odd_from_three_to_fifteen(size, valid):
+    base = {"case": {"document": "c.md"}, "model": {"name": "a/b"}}
+    if valid:
+        assert Experiment(**base, jury_size=size).actor_ids[-1] == f"juror-{size}"
+    else:
+        with pytest.raises(ValidationError, match="jury_size"):
+            Experiment(**base, jury_size=size)

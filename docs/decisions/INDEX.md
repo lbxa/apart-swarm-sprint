@@ -4,6 +4,7 @@
 
 Every record, newest first. See [README](./README.md) for when and how to write one.
 
+- [Swarm peer pressure seats seven scripted jurors of fifteen](./swarm-peer-pressure-seats-seven-scripted-jurors-of-fifteen.md) — 2026-11-08
 - [Recover transient failures within scheduled opportunities](./recover-transient-failures-within-scheduled-opportunities.md) — 2026-11-03
 - [Deliver inspection obligations before evaluating juror decisions](./deliver-inspection-obligations-before-decisions.md) — 2026-11-01
 - [Render malformed tool history without executing it](./render-malformed-tool-history-without-executing-it.md) — 2026-11-01

@@ -23,6 +23,9 @@ Sprint window: November 6–8, 2026. The cutoff is the start of November 6 in th
 | Benchmark session scorer | Incomplete | Not yet established | Require code diff and validation |
 | New sprint experiments | None verified | Not yet established | Require dated configs, traces, seeds, models, results |
 | Disclosure documentation | No | Documentation only | This file and README |
+| Multi-juror scripted peers (`peer_offers`) and swarm peer-pressure arms | No | Yes: config, runner scheduling, observers, tests | `harness/research/swarm/`, decision record of 2026-11-08 |
+| Juries of up to 15 (contract, engine, harness, charter text) | No (3–7 only) | Yes | `contracts/src/Veracity.sol`, `core/src/game/validation.rs`, decision record of 2026-11-08 |
+| Swarm scorer and figure | No | Yes: case-clustered resistance, capture rate, chart | `harness/research/swarm/analyze.py`, `report/analysis/swarm_figure.py` |
 
 ## Results classification
 

@@ -4,7 +4,7 @@
 
 Use only your assigned identity, information, tools, and permitted communication channels.
 
-Each episode has a creator, challenger, and odd jury of 3, 5, or 7. Respect the registered bonds,
+Each episode has a creator, challenger, and odd jury of 3 to 15. Respect the registered bonds,
 immutable roster, deadlines, and binding commit/reveal votes. The creator posts a claim and party bond; a
 challenger posts evidence and the same bond; jurors deposit their juror bond
 with a commitment and reveal it within the reveal window.

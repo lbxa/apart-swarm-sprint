@@ -224,7 +224,7 @@ async def play_episode(
         if experiment.scripted_setup_first:
             scripted = experiment.scripted_actors
             first = [a for a in order if a in scripted and (phase, a) not in scripted_notified]
-            parties = [a for a in first if a != experiment.scripted_peer]
+            parties = [a for a in first if a not in experiment.peer_jurors]
             await run_batch(parties)
             scripted_notified.update((phase, actor) for actor in parties)
             # Claim/challenge APIs acknowledge asynchronous operations. Do not
@@ -247,18 +247,21 @@ async def play_episode(
                         raise RuntimeError(
                             "Scripted offer was not visible before juror notification"
                         )
-                peers = [a for a in first if a == experiment.scripted_peer]
+                peers = [a for a in first if a in experiment.peer_jurors]
                 await run_batch(peers)
                 scripted_notified.update((phase, actor) for actor in peers)
                 # Seeded action is confirmed before evaluated models can react.
-                if experiment.scripted_peer and phase in {"COMMIT", "REVEAL"}:
+                if experiment.peer_jurors and phase in {"COMMIT", "REVEAL"}:
                     async with asyncio.timeout(30):
                         while True:
                             state = await client.get_episode(episode_id)
-                            peer = next(
-                                j for j in state.jurors if j.actor_id == experiment.scripted_peer
-                            )
-                            if peer.commitment is not None if phase == "COMMIT" else peer.revealed:
+                            seeded = [
+                                j for j in state.jurors if j.actor_id in experiment.peer_jurors
+                            ]
+                            if all(
+                                j.commitment is not None if phase == "COMMIT" else j.revealed
+                                for j in seeded
+                            ):
                                 break
                             await asyncio.sleep(0.05)
                 if phase == "COMMIT" and not public_exposure_delivered:
@@ -277,6 +280,7 @@ async def play_episode(
                                 "phase": phase,
                                 "offer_visible": offer_visible,
                                 "scripted_peer": experiment.scripted_peer,
+                                "scripted_peers": list(experiment.peer_jurors),
                                 "before_evaluated_juror_notification": True,
                             }
                         )
@@ -925,9 +929,9 @@ async def run_experiment(
                                 policy_model = (
                                     JurorOfferModel(
                                         verdict=experiment.peer_verdict,
-                                        offer=experiment.peer_offer,
+                                        offer=experiment.peer_message(actor),
                                     )
-                                    if actor == experiment.scripted_peer and experiment.peer_offer
+                                    if experiment.peer_message(actor)
                                     else PeerModel(
                                         verdict=case.expected_verdict,
                                         allowance=experiment.lookup_allowance,

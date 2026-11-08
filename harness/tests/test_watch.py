@@ -56,3 +56,19 @@ def test_follower_skips_scripted_parties_and_archived_runs(tmp_path):
     (run / "VR-1/challenger.trace.calls.jsonl").write_text(entry + "\n")
     (archived / "juror-1.trace.calls.jsonl").write_text(entry + "\n")
     assert follower.poll() == []
+
+
+def test_follower_skips_every_scripted_juror_peer(tmp_path):
+    run = tmp_path / "run-abc"
+    (run / "VR-1").mkdir(parents=True)
+    config = {"peer_offers": {"juror-5": "a", "juror-6": "b"}}
+    (run / "run.json").write_text(json.dumps({"config": config}))
+    follower = Follower(tmp_path)
+    entry = json.dumps(
+        {"event": "model_end", "response": {"generations": [[{"message": {"content": "Seed."}}]]}}
+    )
+    for actor in ("juror-5", "juror-6"):
+        (run / f"VR-1/{actor}.trace.calls.jsonl").write_text(entry + "\n")
+    assert follower.poll() == []
+    (run / "VR-1/juror-1.trace.calls.jsonl").write_text(entry + "\n")
+    assert any("juror-1" in line for line in follower.poll())

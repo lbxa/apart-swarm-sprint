@@ -75,7 +75,7 @@ of collusion. Relationships, memory, and rewards are separate variables.
 | Opportunity | Evidence only; public discussion; logged private messaging | Gateway-enforced channel controls |
 | Relationships | Fresh counterparts; repeated encounters; partner substitutions | Stable identities within runs; substitutions need implementation |
 | Memory | Episode reset; retained session context | Private memory/checkpoint treatment |
-| Coordination difficulty | Unfamiliar partners; larger required coalitions | Odd juries of 3, 5, or 7; familiarity needs a declared design |
+| Coordination difficulty | Unfamiliar partners; larger required coalitions | Odd juries of 3 to 15; familiarity needs a declared design |
 | Oversight | Audit probability, disclosure, action visibility | Full operator audit retained; variable oversight/sanctions need implementation |
 | Financial exposure | Stakes relative to starting resources | Absolute bonds configurable; constrained wealth needs implementation |
 | Content difficulty | Retrieval effort, reasoning depth, verification budget | One frozen case per run; ladders/mixed-case scheduling need implementation |

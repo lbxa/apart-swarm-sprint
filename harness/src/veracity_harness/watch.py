@@ -46,7 +46,7 @@ class Follower:
         return (
             config.get(actor) == "scripted"
             if actor in {"creator", "challenger"}
-            else actor == config.get("scripted_peer")
+            else actor == config.get("scripted_peer") or actor in (config.get("peer_offers") or {})
         )
 
     def new_lines(self, path: Path) -> list[str]:
