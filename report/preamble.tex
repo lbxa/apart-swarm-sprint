@@ -1,0 +1,34 @@
+% !TEX root = main.tex
+% The supplied style owns geometry and page headers. Keep its source unchanged.
+\usepackage{arxiv}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Use a vector monospace font for repository paths in the references.
+\renewcommand{\ttdefault}{pcr}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{microtype}
+% Shaded table columns; load before TikZ, which also loads xcolor.
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usepackage[hidelinks]{hyperref}
+
+% The uploaded style prints \today directly; \date alone cannot set that text.
+\renewcommand{\today}{October 25, 2026}
+\rhead{\scshape Veracity --- baseline and exploratory probes}
+\hypersetup{
+  pdftitle={An All-Levers-Off Baseline for the Veracity Game and Six Exploratory Collusion Probes},
+  pdfauthor={Veracity Project},
+  pdfsubject={Descriptive results from a two-episode live-model baseline and six single-episode probes on local Anvil}
+}
+\graphicspath{{figures/}}
+\listfiles
+
+\tikzset{
+  component/.style={draw,rounded corners,align=center,minimum height=10mm,
+                    text width=30mm,font=\small},
+  dataflow/.style={-{Stealth},thick}
+}

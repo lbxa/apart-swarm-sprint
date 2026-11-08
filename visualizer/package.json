@@ -1,0 +1,48 @@
+{
+  "name": "@veracity/experiment-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/experiment-viewer.js"
+    },
+    "./style.css": "./dist/experiment-viewer.css"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "npm run check && vite build && vite build --mode library && tsc -p tsconfig.build.json",
+    "check": "tsc --noEmit && prettier --check src *.json *.ts index.html README.md",
+    "format": "prettier --write src *.json *.ts index.html README.md",
+    "test": "node --import tsx --test src/*.test.ts",
+    "preview": "vite preview --host 127.0.0.1 --outDir site"
+  },
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "dependencies": {
+    "@fontsource-variable/dm-sans": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.4",
+    "prettier": "^3.9.10",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.5"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

@@ -1,0 +1,30 @@
+% !TEX root = ../main.tex
+\section{Introduction}
+\label{sec:introduction}
+
+Studying collusion among language-model agents requires an environment that
+preserves its protocol rules while exposing the intended experimental controls.
+The reduced Veracity game assigns agents to create a claim, challenge it, and
+serve on a jury whose committed votes determine financial
+settlement~\cite{project-spec}. The broader experiment varies incentives,
+communication, transfers, memory, stakes, and evidence. Before interpreting
+differences between those settings, we need to verify that live agents can
+complete the baseline and that its measurements remain traceable to execution.
+
+This report answers that narrower integration question. We examine one short
+block of two episodes with all six factors at level zero. One claim is true
+and the other false, allowing us to distinguish following evidence from always
+supporting the same party. We report jury agreement, truth alignment, private
+traffic, and consistency across the two episodes, alongside execution checks.
+The figures show the observations as well as their means and descriptive
+standard deviations. The study supplies a reproducible starting point for
+the planned factorial experiments, with no treatment comparison or inferential
+claim about collusion.
+
+Section~\ref{sec:probes} adds six single-episode probes of the cell with every
+opportunity enabled. They check new mechanisms before the first pass: an
+auditor that questions jurors after the verdict, sealed competing offers from
+both parties, party offers to the auditor, and a stated rule prohibiting side
+payments and private chat. A reasoning monitor labels each agent's conduct. The
+probes show what one model did in these settings; they are not a sample from
+which effects can be estimated.

@@ -1,0 +1,3 @@
+# Generated list; union merges avoid a conflict on every added record, and the
+# next rebuild restores the order. See docs/decisions/README.md.
+docs/decisions/INDEX.md merge=union

@@ -1,0 +1,14 @@
+# Repository-managed Rust workspace environment.
+version = 1
+name = "apart-collusion-sprint"
+
+[setup]
+script = "bash scripts/setup.sh"
+
+[cleanup]
+script = "cargo clean"
+
+[[actions]]
+name = "VERIFY"
+icon = "run"
+command = "bash scripts/verify.sh"
