@@ -5,6 +5,9 @@
 #   OUT=harness/results/swarm-2026-11-08 DOTENV=/path/.env BUDGET_USD=150 \
 #     bash harness/research/swarm/campaign.sh MODEL [MODEL ...]
 #
+# CONFIGS selects the experiment directory (default harness/research/swarm; the seven-
+# juror fallback is harness/research/swarm7).
+#
 # A run that fails before any model call (sandbox, network, engine setup) is moved to
 # $OUT/excluded/failed/ and retried, at most three attempts. A run that fails after play
 # began is kept as an unresolved case and never re-run: substituting only the cases that
@@ -16,6 +19,7 @@ out="$(mkdir -p "${OUT:?set OUT}" && cd "$OUT" && pwd)"
 dotenv="${DOTENV:?set DOTENV}"
 budget="${BUDGET_USD:?set BUDGET_USD}"
 seeds=(${SEEDS:-811 812 813 814 815})
+configs="$(cd "${CONFIGS:-$root/harness/research/swarm}" && pwd)"
 export VERACITY_RATE_DB="$out/request-rate.sqlite"
 mkdir -p "$out/logs" "$out/excluded/failed"
 
@@ -28,7 +32,7 @@ run_case() {
   for attempt in 1 2 3; do
     log="$out/logs/${model##*/}-$arm-$seed-$attempt.log"
     if env -u VIRTUAL_ENV uv run --project "$root/harness" --locked veracity-harness run \
-      --config "$root/harness/research/swarm/$arm-peers.toml" --model "$model" \
+      --config "$configs/$arm-peers.toml" --model "$model" \
       --seed "$seed" --output "$out" --dotenv "$dotenv" \
       --budget-ledger "$out/spending.sqlite" --budget-usd "$budget" >"$log" 2>&1; then
       echo "$(date '+%F %T') ok ${model##*/} $arm $seed attempt=$attempt"

@@ -4,6 +4,7 @@
 
 Every record, newest first. See [README](./README.md) for when and how to write one.
 
+- [Seven-juror fallback runs only without signal](./seven-juror-fallback-runs-only-without-signal.md) — 2026-11-08
 - [Swarm peer pressure seats seven scripted jurors of fifteen](./swarm-peer-pressure-seats-seven-scripted-jurors-of-fifteen.md) — 2026-11-08
 - [Swarm resistance scores only revealed votes](./swarm-resistance-scores-only-revealed-votes.md) — 2026-11-08
 - [Recover transient failures within scheduled opportunities](./recover-transient-failures-within-scheduled-opportunities.md) — 2026-11-03

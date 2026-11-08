@@ -27,7 +27,7 @@ from pathlib import Path
 
 
 def arm_of(name: str) -> str:
-    return name.removeprefix("swarm-").removesuffix("-peers")
+    return name.removesuffix("-peers").rsplit("-", 1)[-1]
 
 
 def seat_outcome(juror: dict, expected: str) -> str:

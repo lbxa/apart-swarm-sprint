@@ -122,3 +122,16 @@ def test_case_clustered_interval_peer_effect_and_detectable_difference(tmp_path)
     assert effect["difference_pct"] == pytest.approx(37.5)
     assert effect["se_pct"] == pytest.approx(12.5)
     assert effect["mde80_pct"] == pytest.approx((analysis.Z95 + analysis.Z80) * 12.5)
+
+
+@pytest.mark.parametrize(
+    "name,arm",
+    [
+        ("swarm-honest-peers", "honest"),
+        ("swarm-collusion-peers", "collusion"),
+        ("swarm7-honest-peers", "honest"),
+        ("swarm7-collusion-peers", "collusion"),
+    ],
+)
+def test_arm_is_read_from_any_swarm_experiment_name(name, arm):
+    assert analysis.arm_of(name) == arm

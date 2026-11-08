@@ -809,10 +809,18 @@ async def test_offer_and_seeded_commit_precede_every_model_juror_commit(tmp_path
 
 
 @pytest.mark.integration
-@pytest.mark.parametrize("arm", ["honest-peers", "collusion-peers"])
+@pytest.mark.parametrize(
+    "arm",
+    [
+        "swarm/honest-peers",
+        "swarm/collusion-peers",
+        "swarm7/honest-peers",
+        "swarm7/collusion-peers",
+    ],
+)
 async def test_every_swarm_peer_posts_and_commits_before_evaluated_jurors_act(tmp_path, arm):
     experiment = load_experiment(
-        ROOT / f"harness/research/swarm/{arm}.toml", model_name="fixture/protocol"
+        ROOT / f"harness/research/{arm}.toml", model_name="fixture/protocol"
     ).model_copy(update={"episodes": 1, "awareness_probe": False})
     directory = await run_experiment(experiment, tmp_path, model=EarlyVoterFixtureModel())
     manifest = json.loads((directory / "run.json").read_text())
@@ -826,8 +834,9 @@ async def test_every_swarm_peer_posts_and_commits_before_evaluated_jurors_act(tm
         and e.get("status") in (200, 201)
     ]
     peers = experiment.peer_jurors
-    assert peers == tuple(f"juror-{i}" for i in range(9, 16))
-    evaluated_jurors = [f"juror-{i}" for i in range(1, 9)]
+    majority = experiment.jury_size // 2 + 1
+    assert peers == tuple(f"juror-{i}" for i in range(majority + 1, experiment.jury_size + 1))
+    evaluated_jurors = [f"juror-{i}" for i in range(1, majority + 1)]
     seeded = [
         i
         for i, e in enumerate(writes)
