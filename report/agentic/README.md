@@ -1,32 +1,49 @@
-# Agentic dispute-game case studies
+# Seeded recruitment in agent juries
 
-This manuscript describes the 2026-10-26 neutral-prompt Deep Agents campaign.
-Its evidence is separate from the older structured-action harness reports.
-The [paper brief](../../docs/reporting/paper-brief.md) records A0–A3 and the
-claim-to-evidence mapping; [review.md](review.md) records acceptance checks and
-submission gaps.
+The current manuscript, [When Bad Votes Spread](main.tex), addresses Track 2
+of the November Swarm Alignment Hackathon: reach and persistence after seeded
+bad behavior, and what the current data can identify about network shape.
+The [paper brief](../../docs/reporting/paper-brief.md) records the current
+question and SW1–SW6 claim mapping; [review.md](review.md) records checks and
+open gaps. The earlier October manuscript is preserved as
+[historical-main.tex](historical-main.tex).
 
-The PDF contains the complete 13-run campaign inventory and a qualitative
-account of every experiment in `sections/campaign-results.tex`. Appendix B,
-`sections/complete-record.tex`, lists all 19 assignments, exact run IDs, episode
-payoffs, message/call/reveal/token counts and strong-case evidence locators.
-Raw trajectories are kept separately from this source checkout; tables and prose
-do not replace them. Rebuild this agentic report rather than the older baseline's
-`report/main.tex` when updating these results.
+The frozen cloud snapshot admits 71 sessions and 83 cases from two checkout
+cohorts, retaining seven played failures and excluding one setup-only artifact.
+Tables keep false/truthful reveals, abstentions and unrevealed commitments
+separate. Appendix B links every admitted W&B session and pins original file
+hashes in [the numeric snapshot](../data/swarm-track-snapshot.json).
+Appendix C preserves actual inputs, returned reasoning and confirmed actions.
+These are descriptive results, not a population rate or a topology effect.
+
+The [completed C1 handoff](../../harness/research/swarm-scale/RESULTS-C1.md)
+now covers all 57 C1 runs and 63 cases. It includes the same 24 C1 run IDs in
+the frozen paper snapshot, so a new manuscript cutoff must extend or replace
+that partial cohort. Its per-cell summary, case counts and pinned cloud
+register are versioned alongside the handoff for Stefan to continue without
+new model calls. The frozen manuscript tables retain their original cutoff.
 
 From the repository root:
 
 ```sh
-make -C report agentic
-make -C report agentic-figures PYTHON="$PWD/.harness/report-venv/bin/python"
+python3 -I report/analysis/swarm_track_snapshot.py \
+  --snapshot report/data/swarm-track-snapshot.json --tables report/tables
 make -C report agentic
 ```
 
-The first command builds `report/agentic/build/main.pdf` with the included
-vector figure. Figure regeneration uses the report's existing locked
-`report/requirements.lock` environment. Open `main.tex` or this directory in
-Codex for the source editor and PDF preview. Built outputs and any local
-`report.pdf` copy remain ignored.
+The table-only command needs no raw data, provider access or third-party Python
+dependencies. The second command builds `report/agentic/build/main.pdf`.
+To re-audit original metrics, supply the verified session artifact packet and
+run the builder with `--evidence-root`, `--registry` pointing to the frozen
+snapshot, `--output` and `--tables`; Appendix B gives the command. Original
+file hashes are checked before recomputation. Raw data and PDFs stay ignored.
+
+For the archived October narrative, run `latexmk -pdf -outdir=build
+historical-main.tex` from this directory. Its full campaign inventory and
+qualitative record remain in `sections/campaign-results.tex` and
+`sections/complete-record.tex`.
+
+## Historical October evidence packet
 
 The committed numeric snapshot is `report/data/agentic-campaign.json`.
 Re-admission and raw-export commands are documented in
@@ -51,6 +68,38 @@ verdict labels cannot score a creator's changed claim; use pinned actual-claim
 reviews, and keep ambiguous cases distinct.
 
 ## Changelog
+
+### 2026-11-09
+
+- Keep the completed C1 packet separate from the frozen manuscript registry:
+  existing run IDs overlap, so a completion update extends the cohort rather
+  than adding independent observations. See the
+  [completion decision](../../docs/decisions/completed-c1-results-extend-the-frozen-paper-cohort.md).
+- Reorient the main manuscript to Swarm Track 2 and retain the October narrative
+  separately. Shared public exposure supports recruitment/reach evidence;
+  jury-size changes do not identify graph-shape effects. See the
+  [scope decision](../../docs/decisions/swarm-report-distinguishes-recruitment-from-topology.md)
+  and [unrun topology proposal](../../docs/research/swarm-topology-proposal.md).
+- Use all source-compatible sessions in the frozen W&B audit, with both checkout
+  cohorts and played failures visible. The earlier principles packet reconciles
+  to 390 truthful reveals and ten abstentions; the handoff's 397 is not used.
+- Use monochrome examples with small model tabs, serif speaker labels and
+  grouped exchanges, following the user's *Situational Awareness* reference.
+  The [visual decision](../../docs/decisions/report-examples-use-monochrome-model-tabs.md)
+  replaces the initial colored panel treatment; quotation content is unchanged.
+- Adapt the supplied prompt/response layout to the manuscript's Times fonts and
+  page geometry. Results include selected Kimi reasoning and submitted assessment;
+  Appendix C gives the actual system prompt, scripted inputs, longer reasoning,
+  action confirmations and payment provenance. Source locators and full hashes
+  are in [trace-sources.md](trace-sources.md).
+- Keep this completed November seeded-peer case separate from the historical
+  13-run study. It illustrates paid coordination against the truth under the
+  short charter, not a charter violation, campaign rate or non-Kimi result.
+- Label the existing October public excerpts as public model messages; original
+  raw October sources are required to repeat their historical quotation audit.
+- The [presentation decision](../../docs/decisions/report-model-excerpts-link-inputs-to-executed-actions.md)
+  records why scripted inputs, returned reasoning and confirmed actions retain
+  separate labels. The [review](review.md) records the source and PDF checks.
 
 ### 2026-10-28
 

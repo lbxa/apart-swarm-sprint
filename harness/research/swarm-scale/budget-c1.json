@@ -1,0 +1,17 @@
+{
+  "limit_usd": "135",
+  "halted": 0,
+  "requests": 6145,
+  "accounted_usd": "58.21109260716857906166",
+  "by_status": {
+    "charged": {
+      "requests": 6142,
+      "accounted_usd": "57.36567820716857906166"
+    },
+    "reserved": {
+      "requests": 3,
+      "accounted_usd": "0.84541440"
+    }
+  },
+  "reserved_after_campaign": "Unresolved holds retained at their full accounted amount; no model process remains."
+}

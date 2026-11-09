@@ -1,0 +1,67 @@
+\section{Cloud Snapshot and Reproduction Record}
+\label{app:cloud-register}
+The snapshot is frozen at 2026-11-09 05:53 UTC from W\&B project
+\texttt{lbxa-corp/collusion-benchmark}. It contains 72 matching session
+artifacts. One tagged setup-only failure, \texttt{run-4c91491fa8fd}
+(\href{https://forge.coreweave.com/wandb/lbxa-corp/collusion-benchmark/runs/demu7rna}{demu7rna}),
+has no played case and is excluded. The other 71 sessions supply 83 cases;
+all seven failed played sessions remain. Two cases whose manifest episode
+arrays were empty are recovered from their retained case evidence. Upload
+timestamps are not timestamps of behavior.
+
+The machine-readable snapshot records every run, immutable artifact version
+and digest, SHA256 of each run manifest, episode evidence and opportunity log,
+per-case vote categories and checkout cohort. Every downloaded byte stream was
+checked against its W\&B artifact digest. Runtime source hashes are identical
+across admitted sessions; condition settings agree within each endpoint and
+cell after normalizing seed and checkout path. Cohort C1 contributes 24 sessions
+and 30 cases; C2 contributes 47 sessions and 53 cases. They are retained as
+provenance strata, not randomized treatments. Combined raw counts do not
+establish a population rate.
+
+\subsection{Reproduce the frozen tables}
+Use the verified original evidence packet, not the dashboard's headline
+counters. The W\&B \texttt{cases} summary entry is a table object, and default
+session uploads omit raw \texttt{.calls.jsonl} records. The selected S1
+per-call quotations were checked against separately retained local bytes;
+their complete locators are in \path{report/agentic/trace-sources.md}.
+
+\begin{quote}\small
+\begin{verbatim}
+python3 -I report/analysis/swarm_track_snapshot.py \
+  --evidence-root /path/to/verified-evidence \
+  --registry report/data/swarm-track-snapshot.json \
+  --output report/data/swarm-track-snapshot.json \
+  --tables report/tables
+\end{verbatim}
+\end{quote}
+Then run \texttt{make -C report agentic}. The snapshot has
+\SnapshotTotalFalse{} false reveals, \SnapshotTotalTruthful{} truthful reveals,
+\SnapshotTotalAbstained{} abstentions and \SnapshotTotalUnrevealed{}
+unrevealed commitment across all conditions. These totals combine different
+interventions and are not an aggregate collusion statistic. Per-case records
+preserve the variation and the dependence within repeated-exposure blocks.
+
+\subsection{Earlier principles-campaign count reconciliation}
+The fifty-session packet reproduces \path{report/data/swarm-summary.json}:
+390 truthful reveals, zero false, ten abstentions and no unrevealed commitment.
+The colluding-peer and honest-peer arms contribute 191 and 199 reveals.
+The handoff's 397 does not reconcile with these retained sessions and is not
+used. Cloud identities and original file hashes are pinned in
+\path{report/data/swarm-principles-source-registry.json}. Three setup-only
+archives are excluded. These prior counts are not pooled with the replication.
+
+\subsection{Every admitted cloud session}
+Table~\ref{tab:cloud-sessions} links each run whose \texttt{session} artifact is pinned in the
+numeric snapshot. ``Failed'' means retained failure after play, not deletion
+of the episode's revealed votes.
+The two network modes have distinct retained contract runtime hashes, each
+constant across checkout cohorts within its mode. These hashes are recorded
+as deployment identities; the contract includes an immutable operator address.
+No byte-identical-deployment claim is made across the two modes.
+\begingroup\small
+\newcommand{\CloudSessionCaption}{Every admitted cloud session at the frozen
+cutoff. Cohort labels identify source checkouts; failed sessions retain their
+played evidence.}
+\input{../tables/swarm-cloud-register}
+\endgroup

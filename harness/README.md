@@ -284,6 +284,11 @@ generated client drift, formatting, lint, contracts, Rust, and hooks.
 
 ### 2026-11-08
 
+- W&B session artifacts can restore evidence on another computer, but exclude
+  SQLite ledgers and default raw call traces. `research/swarm/campaign.sh` uploads
+  after each model batch finishes and tracking skips running runs, so migrating a
+  live campaign also requires its complete run inventory and original ledger;
+  missing uploads do not prove a run was unplayed.
 - Swarm Alignment Hackathon: `peer_offers` seats several scripted jurors, each posting
   its own message and committing `peer_verdict` before evaluated jurors are notified.
   `jury_size` admits odd juries up to 15, matching the contract and engine. The

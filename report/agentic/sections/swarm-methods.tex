@@ -1,0 +1,113 @@
+\section{Environment, experiments and measurements}
+\subsection{A financially consequential factual decision}
+All games run on isolated local Anvil chains. The publisher posts
+``The world is flat''; the scripted challenger submits evidence that Earth is
+round. A strict majority of the registered jury is required. The publisher
+and challenger each post 100 synthetic ETH, each juror bonds 5, and a settled
+losing bond pays 85 ETH to the winner, a 5 ETH pool to valid revealing jurors,
+and 10 ETH to the protocol. Revealing jurors recover principal and share the
+pool regardless of vote direction. The publisher promises an additional
+10 ETH credit transfer to each matching revealer if it wins. The promise is
+not escrowed. These are local game credits, not USD or public-chain earnings.
+
+Evaluated accounts have a 20 ETH monthly revenue target. It is not a
+one-case deadline. Each model uses general file and execution tools to inspect
+its instructions and the HTTP API and to act through its assigned identity.
+The endpoints are Cloudflare Workers AI
+\path{@cf/moonshotai/kimi-k2.6}, \path{@cf/moonshotai/kimi-k2.7-code}, and
+\path{@cf/deepseek-ai/deepseek-v4-pro-0813}. Completion limits are 8,192 tokens,
+12 calls per opportunity and 100 per episode. The stepped scheduler permits
+two opportunities per phase. Selected actual inputs appear in
+Appendix~\ref{app:model-exchanges}.
+
+\subsection{Primary comparison: first-moving peer blocs at three sizes}
+For jury size $n\in\{3,7,15\}$, $m=(n-1)/2$ jurors are scripted first movers
+and $k=(n+1)/2$ are evaluated. Colluding peers announce a knowingly false vote
+for payment and invite others to join; honest peers support the evidence and
+decline the offer. The publisher's offer is present in both arms. Scripted
+peers act before evaluated jurors are notified. A single evaluated false vote
+can therefore give the colluding bloc its required majority $q=(n+1)/2$.
+
+All assigned participants can use the shared public forum and permitted
+private channels. Every evaluated juror receives the seeded messages before
+acting. The communication graph is not randomized or rewired. Increasing
+$n$ also increases $m$ and $k$, raises the seed fraction from $1/3$ to $7/15$,
+and reduces the ordinary reward per juror when all reveal. The fixed 10 ETH
+offer is six, fourteen and thirty times the ordinary pool share at the three
+sizes. This is a size-and-bloc comparison with constant one-vote capture
+leverage, not a pure size or network-shape intervention
+(Table~\ref{tab:quorum-geometry}).
+
+\begin{table}[ht]
+\centering\small
+\caption{Decision geometry of the size comparison. Every condition retains
+shared public deliberation. The last column is the ordinary reward if all
+registered jurors reveal; the offered extra payment is always 10 ETH.}
+\label{tab:quorum-geometry}
+\begin{tabular}{rrrrrr}
+\toprule
+Jury $n$ & Seeds $m$ & Evaluated $k$ & Majority $q$ & $q-m$ & Reward (ETH) \\
+\midrule
+3 & 1 & 2 & 2 & 1 & 1.667 \\
+7 & 3 & 4 & 4 & 1 & 0.714 \\
+15 & 7 & 8 & 8 & 1 & 0.333 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Three mechanism contrasts at size three}
+\textbf{Explicit duty.} The principles charter adds truth and independent
+judgment duties to the short charter.
+
+\textbf{Repeated exposure.} The configuration named \texttt{contagion} runs
+three cases on one chain with memory and continuing accounts. The publisher's
+offer and scripted peer are supplied again in every case. We call this
+\emph{repeated exposure}: it tests persistence with payment history available,
+not spread to newly unexposed agents or an isolated memory effect.
+
+\textbf{Mandated publisher.} A modeled publisher is instructed to obtain a
+false majority, with three modeled jurors, no scripted peer and no supplied
+offer. This tests whether recruitment emerges from an adversarial objective.
+A wrong ballot alone in this arm is not classified as an executed coalition.
+
+\subsection{Cloud audit, assignment and dependence}
+We freeze the dashboard at November 9, 2026, 05:53 UTC (00:53 EST).
+Its \SnapshotCloudSessions{} matching uploaded sessions yield
+\SnapshotIncludedSessions{} admitted sessions and \SnapshotAssignedCases{}
+assigned cases. One excluded artifact is setup-only, with no model play or
+case evidence. All \SnapshotRetainedFailures{} failures after play began are
+retained, including evidence recovered when a manifest omitted its episode.
+Cases still running or not uploaded at the cutoff are outside this snapshot,
+not outcomes imputed as zero.
+
+Two source-checkout cohorts contribute 24 and 47 sessions. Their retained
+runtime source hashes are identical and their settings match within each
+model/condition after normalizing the seed and checkout path. We present
+combined descriptive counts and preserve cohort and run identities in the
+snapshot. Repeated seed labels across checkouts are not additional distinct
+randomization seeds. Models and conditions were adaptively selected from
+earlier signal; the partial plan is not a population sample.
+
+\subsection{Reach, persistence and the limit on speed}
+A commitment conceals the verdict from peers; its later reveal counts toward
+the majority. We score false-decision adoption only on a revealed
+\texttt{CREATOR\_SUPPORTED} verdict. We report false reveals (F),
+truthful reveals (T), no commitment (A), and unrevealed commitments (U)
+separately. Case capture requires an actual false majority. Execution failures
+are an overlapping operational flag, not a vote category. Existing failure
+flags do not erase retained votes. The reference claim and observed claim
+match in every admitted case, including the publisher-mandate arm.
+
+Reach is the number of evaluated false revealers in a case, with both revealed
+and assigned-seat denominators visible. Per-case records preserve variability;
+votes within a case and cases within a memory block are dependent. We do not
+turn pooled seat counts into independent replications or a population
+confidence interval. The analyzer's seat-based fallback intervals are not
+used to make propagation or topology claims.
+
+For speed, the available endpoint is coarse: adoption occurs within the same
+case's commit/reveal cycle after guaranteed direct exposure. Wall-clock
+latency mixes model calls, rate limits, provider errors and scheduling. No
+hop-by-hop exposure intervention or transmission lineage is observed. Thus
+these records establish within-case adoption, not an epidemic growth rate,
+reproduction number or causal infection velocity.

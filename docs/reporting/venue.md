@@ -1,8 +1,32 @@
 # Venue and submission record
 
-**Project target: Apart AI Collusion Research Sprint, October 23–25, 2026.**
+## Current target: Swarm Alignment Hackathon, November 6–8, 2026
+
+The user selected **Track 2: The Science of Agent Networks**, specifically
+spread from a compromised agent and the effect of network shape. The
+[official guidelines](https://apartresearch.com/sprints/swarm-alignment-2026#guidelines)
+were checked on **2026-11-09**. They require a report PDF using the linked
+template, at most eight pages before references/appendices, a 150–250-word
+abstract, authors and affiliations, and a Limitations and Dual-Use / Ethical
+Considerations appendix. Prior infrastructure and results must be identified;
+only sprint work is judged. The published deadline is November 8, 23:59 AoE,
+equivalent to November 9, 06:59 EST. No submission is authorized or attempted.
+
+The current official template is
+[this Google document](https://docs.google.com/document/d/1_1_27EyZriMlc8n8EBE2YScaeyMjm-8xjR097nmHXAE/copy?usp=sharing).
+Its copy link redirects to sign-in; the available connected document reader
+could not retrieve it. Its current text and visual layout are not certified.
+The manuscript remains an internal LaTeX draft with existing Letter geometry
+and New TX fonts. Author affiliations remain unspecified. Build
+`make -C report agentic`; the current source is `report/agentic/main.tex` and
+the output `report/agentic/build/main.pdf`. See its [review](../../report/agentic/review.md).
+
+## Historical target: Apart AI Collusion Research Sprint, October 23–25, 2026
+
+The records below apply to the archived October manuscript, now
+`report/agentic/historical-main.tex`, and the older baseline report.
 The user selected this sprint as the target. The separate
-[agentic manuscript](../../report/agentic/main.tex) is an internal results draft;
+[agentic manuscript](../../report/agentic/historical-main.tex) is an internal results draft;
 the older baseline report remains unchanged. A submission-ready revision must
 meet the verified requirements below.
 
@@ -29,11 +53,13 @@ The published deadline is 2026-10-25 at 23:59 Anywhere on Earth (UTC−12), whic
 is 2026-10-26 at 07:59 in America/New_York (EDT). Submission is not authorized
 by the research task and has not been attempted.
 
-## Current report layouts
+## Historical report layouts
 
 The agentic manuscript uses `article` at 11pt on US Letter, one-inch margins
-and New TX text/math fonts. Build `make -C report agentic` with TeX Live
-pdfLaTeX through latexmk; the PDF is `report/agentic/build/main.pdf`.
+and New TX text/math fonts. Rebuild its archived source from `report/agentic/`
+with `latexmk -pdf -outdir=build historical-main.tex`; the PDF is
+`report/agentic/build/historical-main.pdf`. Its original review used
+`make -C report agentic` before that target was reassigned to the Swarm report.
 Its main text is followed by references, the limitations/ethics appendix,
 and a complete run/episode appendix. The
 [review record](../../report/agentic/review.md) preserves checks and gaps.
@@ -59,7 +85,7 @@ with `make -C report figures` when their sources change.
 The [review record](../../report/review.md) records the tested toolchain and PDF
 inspection. The submission fields below remain open for the actual venue.
 
-## Required record
+## Historical required record
 
 Replace `UNSET` with a verified value or an explicit `not applicable` plus a
 reason. Keep the source URL and the date checked beside each external rule.
@@ -70,9 +96,9 @@ reason. Keep the source URL and the date checked beside each external rule.
 | Document stage: internal / submission / rebuttal / camera-ready | Internal results draft |
 | Official author guide and policy URLs; date checked | Official sprint URL above; 2026-10-26 |
 | Official template URL, release/version, download date, and checksum or committed revision | Linked Google document above; text inspected, modified 2026-10-22; visual compliance unresolved |
-| Local report root and main `.tex` file | `report/agentic/main.tex` |
+| Local report root and main `.tex` file | `report/agentic/historical-main.tex` (archived November 9) |
 | Required class/style and review/final switches | Official template required; current article draft not certified equivalent |
-| Compiler, TeX distribution, bibliography backend, exact build command | pdfLaTeX, TeX Live 2025, latexmk 4.86a; inline bibliography; `make -C report agentic` |
+| Compiler, TeX distribution, bibliography backend, exact build command | pdfLaTeX, TeX Live 2025, latexmk 4.86a; inline bibliography; original command `make -C report agentic`, now archive command above |
 | Main-text page limit and what counts toward it | Eight main-text pages excluding references/appendices; abstract 150–250 words |
 | References, appendices, supplementary material: placement and limits | References then required limitations/ethics appendix; no separate verified supplement cap |
 | Paper size, margins, columns, fonts, and figure widths | Current draft: Letter, 1in margins, one column, 11pt New TX, 6.5in figure; official visual requirements unresolved |

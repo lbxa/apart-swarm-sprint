@@ -4,10 +4,15 @@
 
 Every record, newest first. See [README](./README.md) for when and how to write one.
 
+- [Completed C1 results extend the frozen paper cohort](./completed-c1-results-extend-the-frozen-paper-cohort.md) — 2026-11-09
+- [Report examples use monochrome model tabs](./report-examples-use-monochrome-model-tabs.md) — 2026-11-09
+- [Report model excerpts link inputs to executed actions](./report-model-excerpts-link-inputs-to-executed-actions.md) — 2026-11-09
+- [Swarm report distinguishes recruitment from topology](./swarm-report-distinguishes-recruitment-from-topology.md) — 2026-11-09
 - [Swarm-scale replicates canonical-peer across jury sizes](./swarm-scale-replicates-canonical-peer-across-jury-sizes.md) — 2026-11-09
 - [Seven-juror fallback runs only without signal](./seven-juror-fallback-runs-only-without-signal.md) — 2026-11-08
 - [Swarm peer pressure seats seven scripted jurors of fifteen](./swarm-peer-pressure-seats-seven-scripted-jurors-of-fifteen.md) — 2026-11-08
 - [Swarm resistance scores only revealed votes](./swarm-resistance-scores-only-revealed-votes.md) — 2026-11-08
+- [Swarm-scale summaries preserve every treatment cell](./swarm-scale-summaries-preserve-every-treatment-cell.md) — 2026-11-08
 - [Recover transient failures within scheduled opportunities](./recover-transient-failures-within-scheduled-opportunities.md) — 2026-11-03
 - [Deliver inspection obligations before evaluating juror decisions](./deliver-inspection-obligations-before-decisions.md) — 2026-11-01
 - [Render malformed tool history without executing it](./render-malformed-tool-history-without-executing-it.md) — 2026-11-01

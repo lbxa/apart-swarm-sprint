@@ -27,6 +27,8 @@ from pathlib import Path
 
 
 def arm_of(name: str) -> str:
+    if name.startswith("swarm-scale-"):
+        return name.removeprefix("swarm-scale-").removesuffix("-peers")
     return name.removesuffix("-peers").rsplit("-", 1)[-1]
 
 

@@ -1,17 +1,18 @@
 # Veracity research reports
 
-The current agentic study is [Payoff Coordination Against Truthful Claims](agentic/main.tex).
+The current manuscript is [When Bad Votes Spread: Seeded Recruitment in Agent Juries](agentic/main.tex),
+for Track 2 of the Swarm Alignment Hackathon.
 Build it with `make -C report agentic`; its PDF is `agentic/build/main.pdf`.
-It uses the separate [agentic campaign snapshot](data/agentic-campaign.json),
+It uses the frozen [cloud-audited swarm snapshot](data/swarm-track-snapshot.json),
 [reproduction guide](agentic/README.md) and [review record](agentic/review.md).
-It does not pool the older results below. Complete experiment JSONs, when supplied
-separately, live in the ignored local path
-`harness/results/campaign-2026-10-26/export/`. Compiled PDFs are local build
+It separates direct recruitment, repeated exposure and the unmeasured effect
+of network shape. The frozen snapshot includes 71 sessions and 83 cases, with
+both checkout cohorts and played failures retained. Compiled PDFs are local build
 products; a source checkout includes the manuscript, numeric snapshots, and
 required figures.
-The manuscript covers all 13 agentic campaign runs, the 19 assigned episodes, and a
-run-by-run interpretation; Appendix B contains the complete episode tables
-and evidence locators. The named authors are Lucas Barbosa, Stefan Gazana,
+The earlier [October manuscript](agentic/historical-main.tex) retains its
+13-run, 19-assignment record separately. Neither it nor the older results below
+is pooled with the current replication. The named authors are Lucas Barbosa, Stefan Gazana,
 Sravika Linga, Muskaan Kumar and Jake Fogel.
 
 ## Earlier baseline report

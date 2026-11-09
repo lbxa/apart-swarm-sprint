@@ -1,0 +1,85 @@
+% Compile with: pdflatex -output-directory=/tmp/llm-report llm-response.tex
+\documentclass[11pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+
+\definecolor{ink}{HTML}{243244}
+\definecolor{accent}{HTML}{245D73}
+\definecolor{paperblue}{HTML}{F2F6F8}
+\definecolor{linegray}{HTML}{D6DEE4}
+\hypersetup{colorlinks=true,urlcolor=accent,linkcolor=accent,
+  pdftitle={Research report: prompt and LLM response}}
+\color{ink}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.65em}
+\linespread{1.12}
+\setlist{leftmargin=*,itemsep=0.3em,topsep=0.3em}
+\pagestyle{plain}
+\tcbset{message/.style={enhanced,breakable,sharp corners,
+  boxrule=0.5pt,colframe=linegray,colback=white,
+  coltext=ink,coltitle=ink,fonttitle=\sffamily\bfseries,
+  colbacktitle=paperblue,left=12pt,right=12pt,top=10pt,bottom=10pt,
+  before skip=12pt,after skip=12pt}}
+\newtcolorbox{promptmessage}{message,title={PROMPT},colback=paperblue}
+\newtcolorbox{responsemessage}{message,title={LLM RESPONSE}}
+
+\begin{document}
+
+{\small\sffamily\bfseries\color{accent} START RESEARCH REPORT}\par
+{\LARGE\bfseries Research report title}\par
+{\small Topic: [topic]\quad Model: [model/version]\quad Date: [date]}\par
+\medskip
+\hrule height 0.5pt
+
+% Replace the example below with your prompt. Use LaTeX, not raw Markdown.
+\begin{promptmessage}
+Explain [research question] for [intended reader]. State the main answer
+first, explain the reasoning, and identify the evidence and limitations.
+
+\textbf{Context.} [Background, definitions, and relevant constraints.]
+
+\textbf{Requested outline.}
+\begin{enumerate}
+  \item Main answer and key findings.
+  \item Analysis, evidence, and sources.
+  \item Limitations and next steps.
+\end{enumerate}
+\end{promptmessage}
+
+% Repeat the two message environments for additional turns.
+% Both boxes can continue across pages for long prompts and responses.
+\begin{responsemessage}
+\textbf{Main answer.} [Write the central answer in two or three sentences.
+Make the most useful conclusion easy to find.]
+
+\subsection*{Key findings}
+\begin{itemize}
+  \item \textbf{Finding one.} [State the finding and its significance.]
+  \item \textbf{Finding two.} [Add supporting detail or a comparison.]
+\end{itemize}
+
+\subsection*{Analysis and evidence}
+[Develop one idea per paragraph. Explain why the evidence supports the
+answer. Define unfamiliar terms before using them.]
+
+% Place verified citations beside claims; use \href{URL}{Source title} for links.
+
+\subsection*{Limitations}
+[Separate observations, interpretation, and uncertainty. Identify what
+cannot be concluded from the available evidence.]
+
+\subsection*{Next steps}
+\begin{enumerate}
+  \item {[First concrete action or follow-up question.]}
+  \item {[Second action and the uncertainty it resolves.]}
+\end{enumerate}
+\end{responsemessage}
+
+\end{document}

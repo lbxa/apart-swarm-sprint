@@ -21,7 +21,7 @@ Sprint window: November 6–8, 2026. The cutoff is the start of November 6 in th
 | Standardized scenario suite | Incomplete | Not yet established | Require code diff and validation |
 | Human annotation workflow | Incomplete | Not yet established | Require code diff and validation |
 | Benchmark session scorer | Incomplete | Not yet established | Require code diff and validation |
-| New sprint experiments | None verified | Not yet established | Require dated configs, traces, seeds, models, results |
+| New sprint experiments | Earlier campaigns remain preexisting evidence | November principles campaign and source-compatible swarm-scale sessions verified at the report cutoff | `report/data/swarm-summary.json`; `report/data/swarm-track-snapshot.json`; current report's source audit and frozen cloud registry |
 | Disclosure documentation | No | Documentation only | This file and README |
 | Multi-juror scripted peers (`peer_offers`) and swarm peer-pressure arms | No | Yes: config, runner scheduling, observers, tests | `harness/research/swarm/`, decision record of 2026-11-08 |
 | Juries of up to 15 (contract, engine, harness, charter text) | No (3–7 only) | Yes | `contracts/src/Veracity.sol`, `core/src/game/validation.rs`, decision record of 2026-11-08 |

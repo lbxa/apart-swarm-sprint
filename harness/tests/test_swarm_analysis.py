@@ -152,7 +152,48 @@ def test_a_run_that_failed_before_recording_episodes_is_read_from_its_case_folde
         ("swarm-collusion-peers", "collusion"),
         ("swarm7-honest-peers", "honest"),
         ("swarm7-collusion-peers", "collusion"),
+        ("swarm-scale-n3-honest-peers", "n3-honest"),
+        ("swarm-scale-n3-collusion-peers", "n3-collusion"),
+        ("swarm-scale-n7-honest-peers", "n7-honest"),
+        ("swarm-scale-n7-collusion-peers", "n7-collusion"),
+        ("swarm-scale-n15-honest-peers", "n15-honest"),
+        ("swarm-scale-n15-collusion-peers", "n15-collusion"),
+        ("swarm-scale-n3-principles-collusion-peers", "n3-principles-collusion"),
+        ("swarm-scale-n3-contagion-collusion-peers", "n3-contagion-collusion"),
+        ("swarm-scale-n3-mandate", "n3-mandate"),
     ],
 )
 def test_arm_is_read_from_any_swarm_experiment_name(name, arm):
     assert analysis.arm_of(name) == arm
+
+
+def test_swarm_scale_summary_keeps_jury_sizes_and_contrasts_separate(tmp_path):
+    arms = (
+        "n3-honest",
+        "n3-collusion",
+        "n7-honest",
+        "n7-collusion",
+        "n15-honest",
+        "n15-collusion",
+        "n3-principles-collusion",
+        "n3-contagion-collusion",
+        "n3-mandate",
+    )
+    runs = [
+        write_run(
+            tmp_path,
+            f"run-{arm}",
+            f"scale-{arm}",
+            "m/x",
+            [(HONEST + seeded(TRUE), TRUE, False)],
+        )
+        for arm in arms
+    ]
+    summary = analysis.summarise(runs)["m/x"]
+    assert set(summary) == set(arms)
+    for arm in arms:
+        cell = summary[arm]
+        assert cell["assigned_cases"] == cell["cases"] == 1
+        assert cell["resisted"] == 4
+        assert cell["colluded"] == cell["abstained"] == cell["unrevealed"] == 0
+        assert cell["runs"] == [f"run-{arm}"]
