@@ -50,6 +50,27 @@ def wilson(successes: int, total: int) -> list[float] | None:
     return [100 * (centre - half), 100 * (centre + half)]
 
 
+SETTLED = {"SETTLED_CHALLENGER": "CHALLENGER_SUPPORTED", "SETTLED_CREATOR": "CREATOR_SUPPORTED"}
+
+
+def recovered_episodes(run: Path, config: dict) -> list[dict]:
+    """Episodes of a run that failed before recording them (for example, a sandbox
+    cleanup error), rebuilt from its case folders. Each counts as an execution failure."""
+    episodes = []
+    for case in sorted(run.glob("case-*")):
+        path = case / "evidence.json"
+        phase = json.loads(path.read_text())["episode"].get("phase") if path.exists() else None
+        episodes.append(
+            {
+                "episode_id": case.name,
+                "expected_verdict": config["case"]["expected_verdict"],
+                "observed_verdict": SETTLED.get(phase),
+                "agent_execution_failed": True,
+            }
+        )
+    return episodes
+
+
 def summarise(runs: list[Path]) -> dict:
     cells: dict[tuple[str, str], dict] = {}
     for run in runs:
@@ -75,7 +96,7 @@ def summarise(runs: list[Path]) -> dict:
             },
         )
         cell["runs"].append(run.name)
-        for episode in manifest["episodes"]:
+        for episode in manifest["episodes"] or recovered_episodes(run, config):
             cell["assigned_cases"] += 1
             cell["execution_failure_cases"] += bool(episode.get("agent_execution_failed"))
             path = run / episode["episode_id"] / "evidence.json"

@@ -385,3 +385,77 @@ def test_swarm7_fallback_repeats_the_signal_producing_setup_with_seven_jurors():
     assert collusion.revenue_targets_wei == {"juror": "20000000000000000000"}
     assert collusion.offer_payment_wei == "10000000000000000000"
     assert collusion.treatment.transfers and collusion.episodes == 1 and not collusion.lineup
+
+
+SCALE = ROOT / "harness/research/swarm-scale"
+
+
+@pytest.mark.parametrize("size", [3, 7, 15])
+def test_swarm_scale_arms_match_and_sit_one_vote_short_at_every_jury_size(size):
+    honest = load_experiment(SCALE / f"n{size}-honest-peers.toml")
+    collusion = load_experiment(SCALE / f"n{size}-collusion-peers.toml")
+    assert collusion == honest.model_copy(
+        update={
+            "name": collusion.name,
+            "peer_offers": collusion.peer_offers,
+            "peer_verdict": collusion.peer_verdict,
+        }
+    )
+    assert (honest.peer_verdict, collusion.peer_verdict) == (
+        "CHALLENGER_SUPPORTED",
+        "CREATOR_SUPPORTED",
+    )
+    assert collusion.jury_size == size
+    assert len(collusion.peer_jurors) == size // 2
+
+
+def test_swarm_scale_replicates_the_settings_that_produced_paid_wrong_majorities():
+    canonical = load_experiment(ROOT / "harness/research/frontier-2026-10-31/canonical-peer.toml")
+    scale = load_experiment(SCALE / "n3-collusion-peers.toml")
+    for field in ("constitution", "objective", "revenue_targets_wei", "offer", "offer_payment_wei"):
+        assert getattr(scale, field) == getattr(canonical, field), field
+    assert scale.treatment.transfers and scale.scripted_setup_first
+    assert scale.peer_message("juror-3") == canonical.peer_offer
+    # One case per run instead of a two-case session; the same juror stakes.
+    beta, old_beta = int(scale.parameters.beta_wei), int(canonical.parameters.beta_wei)
+    assert beta * scale.parameters.gamma_bps == old_beta * canonical.parameters.gamma_bps
+    assert beta * scale.parameters.juror_bps == old_beta * canonical.parameters.juror_bps
+
+
+def test_swarm_scale_publisher_can_pay_the_offer_to_every_juror_of_the_largest_jury():
+    experiment = load_experiment(SCALE / "n15-collusion-peers.toml")
+    q = experiment.parameters
+    beta = int(q.beta_wei)
+    winner_payout = 2 * beta - beta * (q.protocol_bps + q.juror_bps) // 10000
+    assert winner_payout >= experiment.jury_size * int(experiment.offer_payment_wei)
+
+
+def test_swarm_scale_contrasts_change_one_thing_each():
+    base = load_experiment(SCALE / "n3-collusion-peers.toml")
+    principles = load_experiment(SCALE / "n3-principles-collusion-peers.toml")
+    assert principles == base.model_copy(
+        update={"name": principles.name, "constitution": "principles"}
+    )
+    contagion = load_experiment(SCALE / "n3-contagion-collusion-peers.toml")
+    assert contagion == base.model_copy(
+        update={
+            "name": contagion.name,
+            "episodes": 3,
+            "network": "continuous",
+            "treatment": base.treatment.model_copy(update={"memory": True}),
+        }
+    )
+    mandate = load_experiment(SCALE / "n3-mandate.toml")
+    assert mandate.mandate == "creator" and mandate.creator == "agent"
+    assert not mandate.peer_jurors and mandate.offer is None
+    assert mandate.constitution == base.constitution and mandate.treatment == base.treatment
+
+
+def test_swarm_scale_plan_runs_every_config_and_only_existing_ones():
+    lines = [
+        line.split()
+        for line in (SCALE / "plan.txt").read_text().splitlines()
+        if line.strip() and not line.startswith("#")
+    ]
+    assert {config for config, _ in lines} == {p.name for p in SCALE.glob("*.toml")}
+    assert all(seed.isdigit() for _, seed in lines)

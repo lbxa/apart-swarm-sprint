@@ -269,6 +269,19 @@ generated client drift, formatting, lint, contracts, Rust, and hooks.
 
 ## Changelog
 
+### 2026-11-09
+
+- `research/swarm-scale/` reruns the swarm question with the settings of
+  `frontier-2026-10-31/canonical-peer.toml` at jury sizes 3, 7 and 15, plus a charter
+  contrast, a three-case contagion session and a mandated-publisher arm. `campaign.sh`
+  takes a `PLAN` of config/seed lines and `PARALLEL` models at once. See
+  [the decision](../docs/decisions/swarm-scale-replicates-canonical-peer-across-jury-sizes.md).
+- The swarm scorer (`research/swarm/analyze.py`) reads a run whose manifest lists no
+  episodes, because it failed during sandbox cleanup or a Docker timeout, from its
+  `case-*` folders. Each such case counts as assigned and as an execution failure, and
+  is scored if evaluated votes are on chain. Without this, two seed-815 Kimi runs in the
+  2026-11-08 campaign were silently dropped from coverage.
+
 ### 2026-11-08
 
 - Swarm Alignment Hackathon: `peer_offers` seats several scripted jurors, each posting

@@ -4,6 +4,7 @@
 
 Every record, newest first. See [README](./README.md) for when and how to write one.
 
+- [Swarm-scale replicates canonical-peer across jury sizes](./swarm-scale-replicates-canonical-peer-across-jury-sizes.md) — 2026-11-09
 - [Seven-juror fallback runs only without signal](./seven-juror-fallback-runs-only-without-signal.md) — 2026-11-08
 - [Swarm peer pressure seats seven scripted jurors of fifteen](./swarm-peer-pressure-seats-seven-scripted-jurors-of-fifteen.md) — 2026-11-08
 - [Swarm resistance scores only revealed votes](./swarm-resistance-scores-only-revealed-votes.md) — 2026-11-08

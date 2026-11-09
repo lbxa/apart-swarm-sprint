@@ -693,6 +693,8 @@ async def test_seeded_offer_executes_votes_and_pays_only_matching_revealers(
 class EarlyVoterFixtureModel(BaseChatModel):
     """A fast juror catches a challenge within an earlier notification's turn."""
 
+    verdict: str = "CHALLENGER_SUPPORTED"
+
     @property
     def _llm_type(self):
         return "early-voter-exposure-fixture"
@@ -706,7 +708,7 @@ class EarlyVoterFixtureModel(BaseChatModel):
         case = messages[-1].content.split("Case ", 1)[1].split(",", 1)[0]
         actor = run_manager.metadata["lc_agent_name"]
         script = (
-            f"CASE, ACTOR = {case!r}, {actor!r}\n"
+            f"CASE, ACTOR, VERDICT = {case!r}, {actor!r}, {self.verdict!r}\n"
             + r"""
 import json, os, time, urllib.request
 def call(method, endpoint, body=None):
@@ -724,7 +726,7 @@ for _ in range(20):
     time.sleep(0.05)
 if phase == "COMMIT":
     call("GET", "/forum/messages")
-    call("POST", "/commitments", {"verdict": "CHALLENGER_SUPPORTED", "assessment": "Fixture."})
+    call("POST", "/commitments", {"verdict": VERDICT, "assessment": "Fixture."})
 elif phase == "REVEAL":
     call("POST", "/reveals", {})
 """
@@ -816,6 +818,10 @@ async def test_offer_and_seeded_commit_precede_every_model_juror_commit(tmp_path
         "swarm/collusion-peers",
         "swarm7/honest-peers",
         "swarm7/collusion-peers",
+        "swarm-scale/n3-collusion-peers",
+        "swarm-scale/n7-collusion-peers",
+        "swarm-scale/n15-collusion-peers",
+        "swarm-scale/n3-contagion-collusion-peers",
     ],
 )
 async def test_every_swarm_peer_posts_and_commits_before_evaluated_jurors_act(tmp_path, arm):
@@ -867,3 +873,36 @@ async def test_every_swarm_peer_posts_and_commits_before_evaluated_jurors_act(tm
     }
     paid = {t["recipient"] for t in summary["credit_transfers"]}
     assert paid == (flat if summary["outcome"] == "SETTLED_CREATOR" else set())
+
+
+@pytest.mark.integration
+async def test_the_swarm_scale_offer_pays_every_flat_voter_of_the_largest_jury(tmp_path):
+    # Contract credit comes only from settlement: the winning publisher must hold enough
+    # to pay 10 ETH to all fifteen flat voters.
+    experiment = load_experiment(
+        ROOT / "harness/research/swarm-scale/n15-collusion-peers.toml",
+        model_name="fixture/protocol",
+    ).model_copy(update={"episodes": 1, "awareness_probe": False})
+    model = EarlyVoterFixtureModel(verdict="CREATOR_SUPPORTED")
+    directory = await run_experiment(experiment, tmp_path, model=model)
+    manifest = json.loads((directory / "run.json").read_text())
+    assert manifest["status"] == "complete"
+    summary = manifest["episodes"][0]
+    assert summary["outcome"] == "SETTLED_CREATOR"
+    transfers = summary["credit_transfers"]
+    jurors = {a for a in experiment.actor_ids if a.startswith("juror-")}
+    assert {t["recipient"] for t in transfers} == jurors
+    assert all(int(t["amount_wei"]) == int(experiment.offer_payment_wei) for t in transfers)
+
+
+@pytest.mark.integration
+async def test_the_swarm_scale_mandate_arm_hands_the_creator_its_mandate(tmp_path):
+    experiment = load_experiment(
+        ROOT / "harness/research/swarm-scale/n3-mandate.toml", model_name="fixture/protocol"
+    ).model_copy(update={"awareness_probe": False, "opportunities_per_phase": 1})
+    directory = await run_experiment(experiment, tmp_path, model=ProtocolFixtureModel())
+    manifest = json.loads((directory / "run.json").read_text())
+    assert manifest["status"] == "complete"
+    case = manifest["episodes"][0]["episode_id"]
+    brief = (directory / case / "documents/creator/account.md").read_text()
+    assert "The world is flat." in brief and "at all costs" in brief

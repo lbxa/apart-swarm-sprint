@@ -6,7 +6,9 @@
 #     bash harness/research/swarm/campaign.sh MODEL [MODEL ...]
 #
 # CONFIGS selects the experiment directory (default harness/research/swarm; the seven-
-# juror fallback is harness/research/swarm7).
+# juror fallback is harness/research/swarm7). PLAN instead names a file of
+# "config.toml seed" lines (paths relative to the plan), run in order for every model.
+# PARALLEL sets how many models run at once (default 2; each model has its own rate).
 #
 # A run that fails before any model call (sandbox, network, engine setup) is moved to
 # $OUT/excluded/failed/ and retried, at most three attempts. A run that fails after play
@@ -20,6 +22,8 @@ dotenv="${DOTENV:?set DOTENV}"
 budget="${BUDGET_USD:?set BUDGET_USD}"
 seeds=(${SEEDS:-811 812 813 814 815})
 configs="$(cd "${CONFIGS:-$root/harness/research/swarm}" && pwd)"
+plan="${PLAN:+$(cd "$(dirname "$PLAN")" && pwd)/$(basename "$PLAN")}"
+parallel="${PARALLEL:-2}"
 export VERACITY_RATE_DB="$out/request-rate.sqlite"
 mkdir -p "$out/logs" "$out/excluded/failed"
 
@@ -28,11 +32,13 @@ played() {  # Did the run reach any model call?
 }
 
 run_case() {
-  local model="$1" arm="$2" seed="$3" attempt log run
+  local model="$1" config="$2" seed="$3" attempt log run arm
+  arm="$(basename "$config" .toml)"
+  arm="${arm%-peers}"
   for attempt in 1 2 3; do
     log="$out/logs/${model##*/}-$arm-$seed-$attempt.log"
     if env -u VIRTUAL_ENV uv run --project "$root/harness" --locked veracity-harness run \
-      --config "$configs/$arm-peers.toml" --model "$model" \
+      --config "$config" --model "$model" \
       --seed "$seed" --output "$out" --dotenv "$dotenv" \
       --budget-ledger "$out/spending.sqlite" --budget-usd "$budget" >"$log" 2>&1; then
       echo "$(date '+%F %T') ok ${model##*/} $arm $seed attempt=$attempt"
@@ -56,20 +62,28 @@ run_case() {
 }
 
 run_model() {
-  local model="$1" seed i=0 arms
+  local model="$1" seed i=0 arms config
+  if [ -n "$plan" ]; then
+    while read -r config seed; do
+      case "$config" in ''|'#'*) continue ;; esac
+      run_case "$model" "$(dirname "$plan")/$config" "$seed" </dev/null
+      [ $? -eq 2 ] && return 2
+    done <"$plan"
+    return 0
+  fi
   for seed in "${seeds[@]}"; do
     # Alternate which arm runs first so time of day does not track the arm.
     if (( i++ % 2 )); then arms=(collusion honest); else arms=(honest collusion); fi
     for arm in "${arms[@]}"; do
-      run_case "$model" "$arm" "$seed"
+      run_case "$model" "$configs/$arm-peers.toml" "$seed"
       [ $? -eq 2 ] && return 2
     done
   done
 }
 
 models=("$@")
-for ((p = 0; p < ${#models[@]}; p += 2)); do
-  pair=("${models[@]:p:2}")
+for ((p = 0; p < ${#models[@]}; p += parallel)); do
+  pair=("${models[@]:p:parallel}")
   for model in "${pair[@]}"; do run_model "$model" & done
   wait
   env -u VIRTUAL_ENV uv run --project "$root/harness" --locked veracity-harness-wandb \

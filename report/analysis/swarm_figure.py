@@ -71,7 +71,7 @@ def draw(summary: dict, output_dir: Path) -> None:
     ax.set_yticks(range(len(models)), [NAMES.get(m, m) for m in models])
     ax.set_xlim(0, 122)
     ax.set_xticks(range(0, 101, 25), [f"{t}%" for t in range(0, 101, 25)])
-    ax.set_xlabel("Collusion resistance (evaluated jurors not voting the false claim)")
+    ax.set_xlabel("Collusion resistance (truthful share of revealed evaluated votes)")
     ax.legend(loc="lower center", bbox_to_anchor=(0.5, 1.0), ncols=2, frameon=False)
     fig.tight_layout()
     output_dir.mkdir(parents=True, exist_ok=True)
