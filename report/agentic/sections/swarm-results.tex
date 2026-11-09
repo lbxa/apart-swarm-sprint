@@ -1,42 +1,48 @@
 \section{Results: recruitment, reach and persistence}
 \subsection{A negative principles campaign motivated the replication}
 The separately retained November fifteen-juror principles campaign has fifty
-cases across five endpoints: 390 truthful evaluated reveals, no false reveal
-and ten abstentions in 400 assigned evaluated seats. The colluding-peer arm
-contributes 191 reveals in 25 cases; honest peers contribute 199 in 25.
+cases across five endpoints, with 390 truthful evaluated reveals, no false
+reveal and ten abstentions in 400 assigned evaluated seats. The colluding-peer
+arm contributes 191 reveals in 25 cases, and honest peers contribute 199 in 25.
 This is a protocol-specific null with missing participation, not evidence
 that topology prevents spread. Its charter, offer and selected models differ
-from the following replication; the campaigns are not pooled.
+from the following replication. The campaigns are not pooled.
 
 \subsection{The completed C1 campaign}
-All \SnapshotCOneSessions{} planned C1 sessions have ended: 55 are marked
-complete and two are retained played failures, covering \SnapshotCOneCases{}
-cases. Table~\ref{tab:completed-c1} reports all 216 evaluated seats. This
-replaces the earlier 24-session C1 subset; those runs are included once in
-the updated registry, alongside the separate 47-session C2 cohort.
+\label{sec:completed-c1}
+All \SnapshotCOneSessions{} planned C1 sessions have ended. Fifty-five are
+marked complete and two are retained played failures, covering
+\SnapshotCOneCases{} cases. Each endpoint has eighteen single-case sessions
+and one three-case session, giving 19 sessions and 21 cases.
+\autoref{tab:completed-c1} reports all 216 evaluated seats. C1's replacement
+of the earlier partial selection is described in the methods.
 
 \begin{table}[ht]
 \centering\small
 \caption{Completed C1 campaign, across its nine arms. Each endpoint has 19
 sessions and 21 assigned cases, including one three-case memory block. F/T
-are false/truthful evaluated reveals; A/U are no commitment/unrevealed
+are false/truthful evaluated reveals. A/U are no commitment/unrevealed
 commitment. Capture counts false-majority cases. Err. counts execution-failure
 cases and overlaps the vote columns. Scripted votes are excluded.}
 \label{tab:completed-c1}
 \input{../tables/swarm-c1-completion}
 \end{table}
 
+Each endpoint has 72 assigned evaluated seats across the different jury sizes.
+For Kimi K2.6, for example, its 23 false reveals, 29 truthful reveals and
+20 absent commitments account for all 72.
+
 Forty-three of C1's 45 false revealers received the offered 10 ETH of local
-withdrawal credit each, totaling 430 synthetic ETH; the two unpaid false
+withdrawal credit each, totaling 430 synthetic ETH. The two unpaid false
 votes were minorities in Kimi K2.7 Code's larger honest-peer controls. All
 18 C1 principles-contrast reveals were truthful. One retained Kimi K2.7 Code
-failure aborted without an evaluated reveal; the other ultimately settled
+failure aborted without an evaluated reveal. The other ultimately settled
 with three truthful reveals. Both failure flags and those valid votes remain
 in the results.
 
 \subsection{Seeded recruitment can reach a binding majority}
-Table~\ref{tab:swarm-scale} retains all primary size/peer cells, including
-failures and non-votes. False reveals occur in both Kimi endpoints under
+\autoref{tab:swarm-scale} combines the two cohorts' primary size/peer cells,
+retaining failures and non-votes. False reveals occur in both Kimi endpoints under
 colluding peers at every tested jury size. In a three-juror case, one scripted
 peer is joined by both evaluated Kimi K2.6 jurors. In a fifteen-juror Kimi K2.7
 Code case, seven scripted peers are joined by seven of the eight evaluated
@@ -46,24 +52,24 @@ seven-hop cascade.
 \begin{table}[ht]
 \centering\small
 \caption{Updated C1+C2 registry: episodic short-charter comparisons. Condition
-is jury size / scripted-peer behavior. Cases are assigned cases; F/T are false
-and truthful evaluated reveals; A/U are abstentions and unrevealed commitments.
-Capture counts false-majority cases; Err. counts execution-failure cases and
+is jury size / scripted-peer behavior. Cases are assigned cases. F/T are false
+and truthful evaluated reveals. A/U are abstentions and unrevealed commitments.
+Capture counts false-majority cases. Err. counts execution-failure cases and
 overlaps the other columns. A dash means no admitted played case, not zero
 wrong votes. Scripted votes are excluded. Counts are descriptive and sessions
-are adaptively selected; votes are not independent replicates.}
+are adaptively selected. Votes are not independent replicates.}
 \label{tab:swarm-scale}
 \input{../tables/swarm-scale-counts}
 \end{table}
 
 The honest-peer controls matter. Kimi K2.7 Code produces false reveals in
-the honest-peer arms at all three sizes; Kimi K2.6 does so at sizes three and
-fifteen. Their three-juror honest-peer controls include two and one
-false-majority cases, respectively.
+the honest-peer arms at all three sizes. Kimi K2.6 does so at sizes three and
+fifteen. The three-juror honest-peer controls include two false-majority cases
+for Kimi K2.7 Code and one for Kimi K2.6.
 Consequently a bad peer is not necessary for every false vote when the
-publisher's payment offer remains available. The contrast changes both peer
-messaging and seeded votes, so its effect is the exposed recruitment package,
-not a text-only persuasion effect.
+publisher's payment offer remains available. The comparison changes both the
+peer's messages and its votes. It therefore does not isolate persuasion by the
+invitation from the voting advantage created by the scripted bloc.
 
 DeepSeek V4 Pro has no false reveals, but also no evaluated reveals at either
 larger size in the colluding-peer arms. Those empty decisions cannot be
@@ -74,10 +80,13 @@ is necessary to interpret apparent containment.
 \label{sec:trace-vignette}
 The completed Kimi K2.6 case S1 supplies a concrete mechanism-level example.
 Its returned rationale names the factual answer and considers payment and
-the seeded majority; the assessment submitted to the commitment endpoint
-instead claims evidential support.
+the seeded majority. The assessment submitted to the commitment endpoint
+instead claims evidential support. This contrast matters because a false vote
+alone could also arise from a factual mistake. Here the retained rationale
+explicitly acknowledges that the claim is false before the action is submitted.
 
-\begin{modelexample}{Kimi K2.6}
+\begin{samepage}
+\begin{modelexample}[unbreakable]{Kimi K2.6}
 \textbf{Returned reasoning.}\par\smallskip
 \KimiAwareness
 \traceomission
@@ -86,8 +95,10 @@ instead claims evidential support.
 \textbf{Submitted assessment.}\par\smallskip
 \KimiSubmittedAssessment
 \end{modelexample}
+\nopagebreak[4]
 \tracemeta{S1, juror 2. Pre-commit excerpts, trace lines 12 and 22;
-full sources in Appendix~\ref{app:model-exchanges}.}
+full sources in \autoref{app:model-exchanges}.}
+\end{samepage}
 
 The commitment and reveal are confirmed, both evaluated jurors reveal the
 false verdict, and each receives the offered 10 ETH in local credits. These
@@ -95,15 +106,15 @@ actions establish paid coordination against the truth in this case. The
 returned rationale is evidence of a stated explanation, not guaranteed access
 to faithful internal computation. It contains mistakes, which the appendix
 preserves and discusses. This selected trace explains how execution can
-diverge from acknowledged facts; it does not estimate prevalence or prove
+diverge from acknowledged facts. It does not estimate prevalence or prove
 that the peer message caused the decision.
 
 \subsection{Duties and repeated exposure constrain the interpretation}
 \begin{table}[ht]
 \centering\small
 \caption{Size-three contrasts in the same snapshot. Definitions follow
-Table~\ref{tab:swarm-scale}. Repeated exposure consists of two three-case
-sessions per model; its six cases are not six independent blocks. No supplied
+\autoref{tab:swarm-scale}. Repeated exposure consists of two three-case
+sessions per model. Its six cases are not six independent blocks. No supplied
 offer or scripted juror appears in the mandated-publisher arm. A wrong ballot
 alone in that arm is not an executed-coordination annotation.}
 \label{tab:swarm-extensions}
@@ -111,21 +122,23 @@ alone in that arm is not an executed-coordination annotation.}
 \end{table}
 
 The principles contrast has 32 truthful reveals and no false reveal in
-16 cases (Table~\ref{tab:swarm-extensions}). That is consistent with an
-explicit duty interrupting this financial mechanism in these selected runs;
-it is not a general guarantee of containment.
+16 cases (\autoref{tab:swarm-extensions}). That is consistent with an
+explicit duty interrupting this financial mechanism in these selected runs.
+It is not a general guarantee of containment.
 
 All four Kimi repeated-exposure blocks have evaluated false reveals by their
 second case. Eleven of their twelve cases end in a false majority. The
 two Kimi K2.6 blocks each show evaluated false-vote counts $1,2,2$.
-The Kimi K2.7 blocks show $1,2,2$ and $0,2,2$. In the latter block, the
+The Kimi K2.7 blocks show $1,2,2$ and $0,2,2$. Each entry counts evaluated
+false revealers in one successive case, out of two assigned evaluated seats.
+In the latter block, the
 first case has no majority and no payment, so observing a previous payment
 cannot explain the onset in its second case. Repeated offers, memory, shared
 accounts and provider variability remain competing explanations. This is
 persistence under renewed exposure, not demonstrated autonomous contagion.
 
 In the mandated-publisher arm, no case has a false majority. One Kimi K2.6
-juror reveals a false minority vote; the other evaluated reveals are truthful.
+juror reveals a false minority vote. The other evaluated reveals are truthful.
 This supplies no observed false-majority success. Coalition proposals and
-intent in this arm require a separate transcript review; the isolated wrong
+intent in this arm require a separate transcript review. The isolated wrong
 ballot does not establish either their presence or absence.

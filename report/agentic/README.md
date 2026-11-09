@@ -4,7 +4,7 @@ The current manuscript, [When Bad Votes Spread](main.tex), addresses Track 2
 of the November Swarm Alignment Hackathon: reach and persistence after seeded
 bad behavior, and what the current data can identify about network shape.
 The [paper brief](../../docs/reporting/paper-brief.md) records the current
-question and SW1–SW6 claim mapping; [review.md](review.md) records checks and
+question and SW1–SW7 claim mapping; [review.md](review.md) records checks and
 open gaps. The earlier October manuscript is preserved as
 [historical-main.tex](historical-main.tex).
 
@@ -34,6 +34,9 @@ make -C report agentic
 
 The table-only command needs no raw data, provider access or third-party Python
 dependencies. The second command builds `report/agentic/build/main.pdf`.
+The current manuscript uses BibTeX with `amsalpha`; `latexmk` runs the
+bibliography pass using [references.bib](references.bib). Citation labels come
+from author/year metadata rather than hand-written labels.
 To re-audit original metrics, supply the verified session artifact packet and
 run the builder with `--evidence-root`, `--registry` pointing to the frozen
 snapshot, `--output` and `--tables`; Appendix B gives the command. Original
@@ -72,6 +75,15 @@ reviews, and keep ambiguous cases distinct.
 
 ### 2026-11-09
 
+- Explain the vote lifecycle, one-vote capture shortfall, observation units and
+  interpretation limits for independent readers. Preserve all audited data and
+  source quotations, and record the editorial passages as pending author review.
+  The [editorial decision](../../docs/decisions/report-editorial-pass-preserves-audited-evidence.md)
+  also records the metadata-generated AMS alphabetic references.
+- Feature selected case S1 beneath the abstract: side-by-side returned reasoning
+  and the submitted assessment, followed by the confirmed false reveal and local
+  credit payment. Reuse the monochrome model-tab style and link the complete
+  context in the results and Appendix C; the example is not a prevalence estimate.
 - Embed completed C1 results in the main text and refreeze the source registry
   at 104 played sessions/116 cases. Replace the overlapping partial C1 selection
   and preserve the earlier C2 cohort; the

@@ -18,8 +18,8 @@ If an agent adopts bad behavior, can it recruit its peers, and does network
 structure change the result? We study incentive-mediated recruitment in
 Veracity, a sandboxed publisher--challenger--jury game with binding
 commit/reveal votes and local credit transfers. A scripted publisher offers
-payment for upholding a false flat-Earth claim. Scripted jurors act first;
-the remaining jurors use evaluated models. We compare honest and colluding
+payment for upholding a false flat-Earth claim. Scripted jurors act first.
+The remaining jurors use evaluated models. We compare honest and colluding
 peers in juries of 3, 7 and 15, and inspect explicit-duty, repeated-exposure
 and mandated-publisher contrasts. The updated W\&B registry admits
 \SnapshotIncludedSessions{} sessions and \SnapshotAssignedCases{} cases from
@@ -28,17 +28,18 @@ after play began. The completed \SnapshotCOneSessions{}-session replication
 (C1) contains \SnapshotCOneFalse{} false and
 \SnapshotCOneTruthful{} truthful reveals, with \SnapshotCOneAbstained{}
 absent commitments. Under the short charter, a single scripted juror can be
-joined by both evaluated Kimi K2.6 jurors within one case; a seven-seat
+joined by both evaluated Kimi K2.6 jurors within one case. A seven-seat
 scripted bloc is joined by up to seven of eight evaluated jurors in a larger jury.
 Returned reasoning, submitted assessments, revealed votes and payments jointly
 document a recruitment mechanism. False votes also occur with honest peers.
-The explicit-duty contrast has no false reveals; extensive non-participation
+The explicit-duty contrast has no false reveals. Extensive non-participation
 limits the DeepSeek comparison. These observations establish reach and
 persistence under direct exposure, not multi-hop infection speed. Communication
 topology is fixed, while size, seeded-bloc size and reward shares co-vary.
 Consequently the present data cannot identify a network-shape effect. We specify
 a controlled topology comparison that would answer that remaining question.
 \end{abstract}
+\input{sections/frontmatter-example}
 \input{sections/swarm-introduction}
 \input{sections/swarm-methods}
 \input{sections/swarm-results}
@@ -46,23 +47,14 @@ a controlled topology comparison that would answer that remaining question.
 \section*{Code and data}
 The engine, contracts and harness are preexisting Veracity infrastructure.
 Sprint additions and attribution are recorded in
-\path{docs/swarm-2026-disclosure.md}. The report's frozen numeric evidence,
-per-case outcomes, source hashes and W\&B artifact identities are in
-\path{report/data/swarm-track-snapshot.json}; the deterministic report builder
-is \path{report/analysis/swarm_track_snapshot.py}. Raw campaigns remain
-separately retained. Appendix~\ref{app:cloud-register} gives every admitted
-session's cloud link; Appendix~\ref{app:model-exchanges} gives selected actual
-inputs and outputs. The historical October manuscript is retained as
-\path{report/agentic/historical-main.tex} and is not a new sprint result.
-\begin{thebibliography}{9}
-\bibitem{apart-swarm} Apart Research. 2026.
-\emph{Swarm Alignment Hackathon}, Track 2: The Science of Agent Networks.
-\url{https://apartresearch.com/sprints/swarm-alignment-2026}.
-Guidelines and track question checked November 9, 2026.
-\bibitem{lee-tiwari} Donghyun Lee and Mo Tiwari. 2024.
-\emph{Prompt Infection: LLM-to-LLM Prompt Injection within Multi-Agent Systems}.
-arXiv:2410.07283v1. \url{https://arxiv.org/abs/2410.07283}.
-\end{thebibliography}
+\path{docs/swarm-2026-disclosure.md}. The frozen numeric registry is
+\path{report/data/swarm-track-snapshot.json}. \autoref{app:cloud-register}
+gives source hashes, cloud links and reproduction commands.
+\autoref{app:model-exchanges} gives selected actual inputs and outputs.
+Raw campaigns remain separately retained. The earlier October manuscript,
+\path{report/agentic/historical-main.tex}, is archived separately.
+\bibliographystyle{amsalpha}
+\bibliography{references}
 \clearpage
 \appendix
 \input{sections/swarm-limitations}

@@ -5,8 +5,8 @@ The updated registry combines the completed C1 campaign through
 W\&B project \texttt{lbxa-corp/collusion-benchmark}. It contains 105 selected
 session artifacts. One tagged setup-only failure, \texttt{run-4c91491fa8fd}
 (\href{https://forge.coreweave.com/wandb/lbxa-corp/collusion-benchmark/runs/demu7rna}{demu7rna}),
-has no played case and is excluded. The other 104 sessions supply 116 cases;
-all eight failed played sessions remain. Two cases whose manifest episode
+has no played case and is excluded. The other 104 sessions supply 116 cases.
+All eight failed played sessions remain. Two cases whose manifest episode
 arrays were empty are recovered from their retained case evidence. Upload
 timestamps are not timestamps of behavior.
 
@@ -14,28 +14,28 @@ The machine-readable snapshot records every run, immutable artifact version
 and digest, SHA256 of each run manifest, episode evidence and opportunity log,
 per-case vote categories and checkout cohort. Every downloaded byte stream was
 checked against its W\&B artifact digest. Runtime source hashes are identical
-across admitted sessions; condition settings agree within each endpoint and
+across admitted sessions. Condition settings agree within each endpoint and
 cell after normalizing seed and checkout path. Cohort C1 contributes 57 sessions
-and 63 cases; C2 contributes 47 sessions and 53 cases. The previous 24 C1
+and 63 cases, and C2 contributes 47 sessions and 53 cases. The previous 24 C1
 sessions are included within the completed 57, never added as separate data.
-The cohorts are retained as
-provenance strata, not randomized treatments. Combined raw counts do not
+The cohort labels record which source checkout produced a session. They do
+not assign sessions to randomized treatments. Combined raw counts do not
 establish a population rate.
 
 The exact accounted inference cost for C1 is USD
-58.21109260716857906166 against its USD 135 cap: USD
+58.21109260716857906166 against its USD 135 cap. This consists of USD
 57.36567820716857906166 in known charges and USD 0.84541440 in three unresolved
 reservations. All reservations remain accounted. These USD costs are distinct
 from synthetic game-credit rewards. The aggregate budget is retained in
-\path{harness/research/swarm-scale/budget-c1.json}; no combined C1+C2 inference
+\path{harness/research/swarm-scale/budget-c1.json}. No combined C1+C2 inference
 cost is inferred from per-run ledger snapshots.
 
 \subsection{Reproduce the frozen tables}
 Use the verified original evidence packet, not the dashboard's headline
 counters. The W\&B \texttt{cases} summary entry is a table object, and default
 session uploads omit raw \texttt{.calls.jsonl} records. The selected S1
-per-call quotations were checked against separately retained local bytes;
-their complete locators are in \path{report/agentic/trace-sources.md}.
+per-call quotations were checked against separately retained local bytes.
+Their complete locators are in \path{report/agentic/trace-sources.md}.
 
 \begin{quote}\small
 \begin{verbatim}
@@ -54,7 +54,7 @@ interventions and are not an aggregate collusion statistic. Per-case records
 preserve the variation and the dependence within repeated-exposure blocks.
 
 \subsection{Earlier principles-campaign count reconciliation}
-The fifty-session packet reproduces \path{report/data/swarm-summary.json}:
+The fifty-session packet reproduces \path{report/data/swarm-summary.json}, with
 390 truthful reveals, zero false, ten abstentions and no unrevealed commitment.
 The colluding-peer and honest-peer arms contribute 191 and 199 reveals.
 The handoff's 397 does not reconcile with these retained sessions and is not
@@ -63,15 +63,15 @@ used. Cloud identities and original file hashes are pinned in
 archives are excluded. These prior counts are not pooled with the replication.
 
 \subsection{Completed C1 per-cell results}
-Tables~\ref{tab:c1-scale} and~\ref{tab:c1-extensions} separate the completed
+\autoref{tab:c1-scale} and \autoref{tab:c1-extensions} separate the completed
 C1 plan from the combined C1+C2 tables in the main text. These 63 cases and
 216 evaluated seats are the same observations summarized in
-Table~\ref{tab:completed-c1}, not an additional cohort.
+\autoref{tab:completed-c1}, not an additional cohort.
 
 \begin{table}[ht]
 \centering\small
 \caption{Completed C1 size/peer comparisons. Definitions follow
-Table~\ref{tab:swarm-scale}; failures and absent votes remain visible.}
+\autoref{tab:swarm-scale}. Failures and absent votes remain visible.}
 \label{tab:c1-scale}
 \input{../tables/swarm-c1-scale-counts}
 \end{table}
@@ -80,23 +80,23 @@ Table~\ref{tab:swarm-scale}; failures and absent votes remain visible.}
 \centering\small
 \caption{Completed C1 size-three contrasts. Repeated exposure has one
 three-case block per endpoint. The mandate execution error retains its
-three truthful reveals. Definitions follow Table~\ref{tab:swarm-scale}.}
+three truthful reveals. Definitions follow \autoref{tab:swarm-scale}.}
 \label{tab:c1-extensions}
 \input{../tables/swarm-c1-extension-counts}
 \end{table}
 
 \clearpage
 \subsection{Every admitted cloud session}
-Table~\ref{tab:cloud-sessions} links each run whose \texttt{session} artifact is pinned in the
+\autoref{tab:cloud-sessions} links each run whose \texttt{session} artifact is pinned in the
 numeric snapshot. ``Failed'' means retained failure after play, not deletion
 of the episode's revealed votes.
 The two network modes have distinct retained contract runtime hashes, each
 constant across checkout cohorts within its mode. These hashes are recorded
-as deployment identities; the contract includes an immutable operator address.
+as deployment identities. The contract includes an immutable operator address.
 No byte-identical-deployment claim is made across the two modes.
 \begingroup\small
 \newcommand{\CloudSessionCaption}{Every admitted cloud session at the frozen
-cutoff. Cohort labels identify source checkouts; failed sessions retain their
+cutoff. Cohort labels identify source checkouts. Failed sessions retain their
 played evidence.}
 \input{../tables/swarm-cloud-register}
 \endgroup

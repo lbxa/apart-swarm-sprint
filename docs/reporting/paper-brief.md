@@ -21,6 +21,7 @@ brief and evidence register below retain their original scope.
 | Extent versus speed | Counts establish direct reach and same-case adoption. A three-case session re-seeds the bad peer and offer each time; it is repeated exposure, not proof of autonomous contagion. No causal multi-hop speed or reproduction number is identified. |
 | Network shape | Shared public deliberation exposes everyone directly. Jury size, seed count/fraction, evaluated population and ordinary reward share co-vary, while one more modeled vote always captures a colluding bloc. No topology effect or pure scale effect is identifiable. |
 | Statistics | Descriptive per-model/cell counts, failures and per-case records; votes and repeated cases are dependent. No seat-level interval is used as a population or topology inference. |
+| Notation | Jury size $n\in\{3,7,15\}$, scripted seeds $m=(n-1)/2$, evaluated seats $k=n-m$, and strict-majority threshold $q=(n+1)/2$ are juror counts. The identity $q-m=1$ assumes the colluding scripted bloc reveals as configured. Ordinary reward $5/n$ ETH assumes all $n$ jurors validly reveal in a settled case. |
 | Scope | Short-charter false voting is paid coordination against the truth, not violation of an omitted duty. A false minority ballot alone does not establish an executed coalition. Do not generalize the positive behavior beyond the tested Kimi endpoints. |
 | Venue | [Current venue record](venue.md); eight main-text pages excluding references/appendices, 150–250-word abstract. Affiliations and official template visual equivalence remain open. |
 
@@ -46,6 +47,17 @@ The underlying campaign is not resumed, altered or monitored by this report
 revision. No model calls or cloud writes are needed to prepare it. The new
 graph comparison is a proposed experiment, not an executed result. Subagents
 are unavailable in this side conversation; the review was performed directly.
+
+### Editorial explanation pass
+
+The [editorial decision](../decisions/report-editorial-pass-preserves-audited-evidence.md)
+applies the supplied clarity standard within the existing report structure.
+The revised prose explains commitments and reveals before using the vote
+categories, derives the seeded bloc's one-vote shortfall, and defines cases,
+sessions and checkout cohorts before interpreting counts. It does not change
+the evidence registry, generated tables, quoted model text or SW1–SW7 claims.
+These editorial additions remain pending author review in the report's
+[review record](../../report/agentic/review.md).
 
 ### Completed C1 results embedded in the manuscript
 

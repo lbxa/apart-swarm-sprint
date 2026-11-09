@@ -1,5 +1,145 @@
 # Agentic report review
 
+## Editorial explanation pass reviewed 2026-11-09
+
+Reviewer: Codex, directly. Source: `5b74c90` plus the retained first-page
+feature and this editorial pass. Manuscript: `report/agentic/main.tex`.
+PDF: `report/agentic/build/main.pdf`. Decision: **internal research draft**.
+This is an editorial and technical check, not independent human approval of
+the scientific interpretation.
+
+### Editorial changes pending author review
+
+The following register identifies the new or replaced passages from this pass.
+All remain pending author review. Earlier review records and the status of
+unchanged text are preserved. This research report has no shared book
+pending-review environments or existing passage wrappers to apply or remove.
+
+| Passage | Editorial change awaiting review |
+| --- | --- |
+| Abstract and Code and data | Separate compressed clauses and link the detailed reproduction record. |
+| Introduction, opening and contribution paragraphs | Define the harmful action, distinguish agreement from counted execution, and explain recruitment, reach and persistence. |
+| Introduction, relation to prompt infection | Explain common exposure as an alternative to one juror influencing another. |
+| Methods 2.1–2.2 | Explain commitment/reveal and the full-jury majority, derive the one-vote shortfall, work through seven jurors, and state the all-revealer condition for the reward ratio. |
+| Methods 2.3–2.5 | Define the observation units and turn budgets, explain repeated exposure and the modeled-publisher contrast, and distinguish missing votes, false votes, capture, payment and failure flags. |
+| Results, C1 counts and interpretation | Reconcile 19 sessions with 21 cases and 72 evaluated seats per endpoint, name honest-control outcomes explicitly, and explain what the selected trace and repeated-case sequences establish. |
+| Discussion 4–4.1 and Conclusion | Explain why the observed voting threshold does not measure transmission distance, construct the equal-edge-count comparison explicitly, and retain its unrun status. |
+| Appendices A–C, prose outside quotation boxes | Clarify adaptive selection, provenance cohorts and S1's inclusion in C1. Preserve every source quotation and all stated limitations. |
+| References | Generate AMS alphabetic labels from the same two works' author/year metadata in `references.bib`. |
+
+### Scientific support and source fidelity
+
+The revised argument was read as continuous prose and its mathematical steps
+were checked separately. For each odd jury size 3, 7 and 15, the full-jury
+majority and configured scripted bloc give `q - m = 1`. The worked seven-juror
+example requires four valid reveals and supplies three scripted false votes.
+The reward comparison uses `10 / (5 / n) = 2n` only when all jurors reveal in
+a settled case. The proposed ring and hub construction both have seven
+bidirectional links, with different degree patterns. No graph comparison has
+been executed or inferred from the jury-size comparison.
+
+The numeric snapshot and every tracked swarm table are byte-identical to
+`5b74c90`. Table-only regeneration reproduces all seven files exactly. The
+two report-specific cohort/count checks pass. Exact-body comparisons preserve
+all model-example quotations in the results and Appendix C, and the shared
+quotation macros are unchanged. The separately added front-page feature and
+its earlier source review are retained. The same 104 sessions, 116 cases,
+eight played failures and completed-C1 counts remain. No model calls, paid
+experiments, cloud writes or new empirical observations were made.
+
+The report continues to distinguish paid coordination against the truth from
+violation of an explicit charter duty, non-participation from resistance, and
+synthetic credits from USD spending. Kimi findings are not generalized to
+other model families. Selection, dependence, common exposure, reasoning
+faithfulness and the absence of a topology intervention remain visible.
+No new theorem, inferential interval, SD summary or chart was introduced, so
+their additional review checks are not applicable.
+
+### Compilation, regeneration and visual review
+
+`make -C report agentic` passes with TeX Live 2025, pdfTeX 1.40.27,
+latexmk 4.86a, and BibTeX 0.99d using the installed `amsalpha` style. The
+labels `[Apa26]` and `[LT24]` are generated from bibliography metadata.
+The two reference records retain the works and versions checked in the
+earlier scientific review. No new reference or venue rule is asserted.
+
+A fresh independent output directory also builds successfully from
+`report/agentic/`:
+
+```sh
+latexmk -pdf -synctex=1 -interaction=nonstopmode -halt-on-error \
+  -file-line-error -outdir=/private/tmp/swarm-editorial-final-clean-20261109 main.tex
+```
+
+Clean and canonical PDF text match. Both final logs have no warnings,
+undefined references, missing glyphs or overfull/underfull boxes. Fonts are
+embedded. The abstract is 231 words. All 18 Letter pages were rendered and
+inspected at printed size, including the final revisions. Main text ends on
+page 8, references occupy page 9, limitations page 10, audit/tables/register
+pages 11–15, and model exchanges pages 16–18. The S1 quotation and source
+caption stay together. Tables, continuation headings, captions, quotation
+frames and page margins fit. The monochrome presentation remains readable
+without color and no margin annotations were introduced.
+
+`bash scripts/verify.sh` passes, including 420 Python tests in 432.70 seconds
+and real Docker/Anvil acceptance checks. Decision-index validation and
+`git diff --check` pass. Verification logs are
+`.harness/verification/swarm-editorial-{build,clean,full-gate}-2026-11-09.log`.
+Rendered previews are in `/tmp/swarm-editorial-pages-20261109/`.
+
+Reviewed PDF SHA256:
+`97c066de829d761f6b3c9264aae5f999edf6973db0ce597df58e1998304a2054`.
+Unchanged numeric snapshot SHA256:
+`64375ea66561930617da4689bb475f4e76e9d593853dc2ae6dcd4ed4de89ade3`.
+
+### Open gaps
+
+Lucas and Stefan retain responsibility for approving the revised prose and
+scientific interpretation, supplying affiliations and confirming the official
+template's visual requirements. The AMS bibliography is an internal-draft
+editorial preference, not a claim of venue compliance. No submission or
+external notification was made. These gaps do not change the admitted results.
+
+---
+
+## First-page featured model output reviewed 2026-11-09
+
+Reviewer: Codex, directly; this is not independent human semantic review.
+Source: `5b74c90` plus the first-page example and its documentation.
+Manuscript: `report/agentic/main.tex`; PDF: `report/agentic/build/main.pdf`.
+Decision: **internal research draft**; the scientific and submission gaps below
+remain open.
+
+- A compact, two-column S1 example now follows the abstract on page one.
+  Returned reasoning and the submitted assessment retain distinct labels and
+  the existing monochrome model-tab style. The caption identifies the scripted
+  offer and peer invitation, the false reveal and the 10 ETH local-credit
+  payment, with links to Section 3.4 and Appendix C.
+- Both reasoning sentences match juror 2's retained trace line 12 exactly;
+  the assessment matches line 22 after typographic-apostrophe normalization.
+  Bracketed ellipsis marks the omitted reasoning. The outcome reuses the
+  confirmed S1 action/payment audit recorded below and in the source register.
+  This selected example illustrates paid coordination against the truth;
+  it is not a new observation, prevalence estimate or charter-violation claim.
+- `make -C report agentic` passes. A fresh build also passes with
+  `latexmk -pdf -synctex=1 -interaction=nonstopmode -halt-on-error
+  -file-line-error -outdir=/private/tmp/swarm-frontmatter-clean-20261109 main.tex`
+  from `report/agentic/`. Clean and canonical PDF text match. Both final logs
+  have no warnings, overfull/underfull boxes or missing glyphs; fonts are embedded.
+- All 17 rendered pages were inspected at normal size. The feature and caption
+  stay together on page one; the main text and references still end on page
+  eight. Tables, quotation frames and appendix continuation headers fit.
+  `git diff --check` passes. No experiment or numeric-snapshot regeneration was
+  needed for this presentation change.
+
+Reviewed PDF SHA256:
+`4ec016be6d21d033b09410d823b318d4c422e54736fc12163720a336b497b896`.
+Build logs: `/private/tmp/swarm-frontmatter-20261109-build.log` and
+`/private/tmp/swarm-frontmatter-clean-20261109.log`.
+Page previews: `/private/tmp/swarm-frontmatter-pages-20261109/`.
+
+---
+
 ## Completed C1 embedded and reviewed 2026-11-09
 
 Reviewer: Codex, directly; this is not independent human semantic review.

@@ -21,6 +21,11 @@ and New TX fonts. Author affiliations remain unspecified. Build
 `make -C report agentic`; the current source is `report/agentic/main.tex` and
 the output `report/agentic/build/main.pdf`. See its [review](../../report/agentic/review.md).
 
+The November 9 editorial pass uses BibTeX's `amsalpha` bibliography style and
+author/year metadata in `report/agentic/references.bib`, following the user's
+editorial preference. This does not certify the draft against the official
+template or change any recorded submission requirement.
+
 ## Historical target: Apart AI Collusion Research Sprint, October 23–25, 2026
 
 The records below apply to the archived October manuscript, now

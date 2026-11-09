@@ -1,26 +1,30 @@
 \section{Introduction and research question}
 The Swarm Alignment Hackathon asks how fast and how far bad behavior spreads
 from a compromised agent, and whether network shape matters
-\cite{apart-swarm}. We operationalize one part of that question: can visible
-adversarial behavior recruit other agents into executing the same harmful
-decision when their financial incentives favor it?
+\cite{apart-swarm}. We study whether an agent that visibly chooses a harmful
+action can recruit other agents to make the same choice when their financial
+incentives favor it. Here the harmful action is a vote that helps a false
+factual claim win an adjudication.
 
 Veracity makes the distinction between communication and consequences
 observable. A publisher posts a claim, a challenger submits evidence, and a
-jury selects the binding verdict. A false vote can be proposed, accepted,
-committed, revealed and paid; these are different events. We follow that
-sequence rather than infer propagation from agreement or a model's stated
-intent alone. ``Bad'' here means acting against the supplied factual evidence.
-Under the short charter, that can be financially permitted without violating
-an explicit truth duty. The principles contrast supplies that duty separately.
+jury selects the binding verdict. A message agreeing to vote falsely is not
+yet a counted vote, and a counted false vote does not by itself establish that
+payment occurred. We therefore follow proposals through commitment, reveal
+and payment. ``Bad'' here means acting against the supplied factual evidence.
+The short charter specifies the game rules but omits an explicit duty to vote
+truthfully or independently. Its false votes are consequently described as
+paid coordination against the truth where payment and coordination are
+established. The principles contrast adds those duties and tests a different
+instructional condition.
 
 Our contribution is an auditable study of \emph{recruitment, reach and
-persistence under shared exposure}. Its strongest examples connect the
-model's acknowledgement of the truth to a contrary assessment, executed
-ballot and paid offer. Its main identification limit is equally substantive:
-changing the size of a fully exposed jury does not identify the effect of
-communication topology. We distinguish the question this dataset answers
-from the topology experiment it motivates.
+persistence under shared exposure}. Recruitment concerns an evaluated juror
+joining the supplied false-vote proposal. Reach counts how many evaluated
+jurors reveal that false verdict in a case. Persistence concerns what happens
+across successive cases with renewed exposure. Every evaluated juror receives the adversarial messages
+directly, however. Increasing this fully exposed jury's size cannot establish
+how behavior would travel through a different communication network.
 
 \paragraph{Relation to prompt infection.}
 Lee and Tiwari study prompts that replicate between agents, comparing shared
@@ -28,14 +32,15 @@ and predecessor-limited messaging and a population with pairwise interactions
 \cite{lee-tiwari}. Our intervention supplies a financially rewarded example
 of bad behavior, rather than a self-replicating prompt that overrides an
 agent's instructions. We do not reproduce their infection rates or measure
-the same attack. In our setting every evaluated juror is directly exposed;
-downstream imitation cannot be separated from common exposure to the offer.
+the same attack. Because all evaluated jurors receive the offer directly, two
+jurors making the same choice need not indicate that one influenced the other.
+Both may instead have responded to the same supplied incentive.
 
 \paragraph{Preexisting work and new sprint work.}
-The Rust/Solidity game, Python agent runtime and earlier October campaigns
-predate this sprint. October's neutral-prompt case studies concern endogenous
-dispute funding; the later short-charter calibration motivated the present
-conditions. Neither is counted as new swarm evidence. The November work
+The game and agent runtime predate this sprint. Earlier October case studies
+concern agents arranging dispute funding, and a later short-charter
+calibration motivated the present conditions. Neither is new swarm evidence.
+The November work
 extends juries to fifteen, supplies several first-moving scripted peers,
 compares jury sizes and adds duty, repeated-exposure and publisher-mandate
 contrasts. The previous fifteen-juror principles campaign is a separate
