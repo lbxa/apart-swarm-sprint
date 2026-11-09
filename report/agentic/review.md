@@ -1,5 +1,110 @@
 # Agentic report review
 
+## Completed C1 embedded and reviewed 2026-11-09
+
+Reviewer: Codex, directly; this is not independent human semantic review.
+Source: `9c49785` plus the two-author correction and completed-C1 refreeze.
+Manuscript: `report/agentic/main.tex`; PDF: `report/agentic/build/main.pdf`.
+Decision: **internal research draft**. This entry supersedes the earlier
+frozen-cutoff review where the completed C1 packet was outside the manuscript.
+
+### Evidence and interpretation
+
+- The brief's SW1–SW7 claim mapping now covers 104 unique played sessions and
+  116 unique run/case pairs. All eight played failures remain. The completed
+  57-session C1 selection replaces its earlier 24-session subset; the same
+  47 C2 sessions, their counts and all previously pinned source hashes remain.
+- The main text and abstract explicitly report completed C1: 63 cases, 216
+  evaluated seats, 45 false reveals, 77 truthful reveals, 94 absent commitments
+  and no unrevealed commitments. Forty-three false revealers receive the
+  offered credit. A main-text endpoint table and two appendix per-cell tables
+  distinguish C1 from the combined registry. Scripted votes are excluded.
+- An independent walk of the original jury records reconciles the combined
+  389 evaluated seats: 97 false, 142 truthful, 149 absent commitments and one
+  unrevealed commitment. These heterogeneous counts are not a population
+  collusion rate. Non-votes, execution failures and truthful votes remain
+  separate; one failed C1 session retains its three truthful reveals.
+- The combined principles contrast contains 32 truthful reveals and no false
+  reveal in 16 cases. Short-charter false votes remain paid coordination
+  against the truth, without an added claim of charter violation. The Kimi
+  observations are not generalized to other model families. Dependence,
+  direct exposure and the lack of a topology intervention remain explicit.
+- The exact C1 accounted cost is USD 58.21109260716857906166, including three
+  unresolved reservations. It is distinct from synthetic game credits and
+  is not presented as a combined C1+C2 spending estimate. All 57 C1 session
+  uploads succeeded. No model calls or played-case reruns were made for this
+  report update.
+
+### Regeneration, verification and rendering
+
+The source-based audit reproduces the numeric snapshot and all seven generated
+TeX tables byte for byte:
+
+```sh
+python3 -I report/analysis/swarm_track_snapshot.py \
+  --evidence-root harness/results/swarm-scale/report-completion-20261109 \
+  --registry report/data/swarm-track-snapshot.json \
+  --output /tmp/swarm-report-reproduced.json --tables /tmp/swarm-report-tables
+make -C report agentic
+```
+
+The full `bash scripts/verify.sh` gate passed, including 420 Python tests in
+444.85 seconds and real Docker/Anvil acceptance checks. The two new report
+checks pass; they verify completed-C1 counts and unique cohort membership.
+Ruff checking/formatting, decision-index validation and `git diff --check`
+pass. The generator continues to use the harness vote classifier and scorer.
+
+TeX Live 2025, pdfTeX 1.40.27 and latexmk 4.86a also pass a fresh build:
+
+```sh
+cd report/agentic
+latexmk -pdf -synctex=1 -interaction=nonstopmode -halt-on-error \
+  -file-line-error -outdir=/private/tmp/swarm-completed-report-clean-20261109 main.tex
+```
+
+Clean and canonical PDF text match. Both final logs have no LaTeX warnings,
+undefined references, missing glyphs or overfull/underfull boxes. All fonts
+are embedded. The abstract has 231 words. The PDF has 17 Letter pages:
+main text/references 1–8, limitations 9, audit and completed-C1 tables 10–11,
+cloud register 12–14, and source-linked model exchanges 15–17. Every page was
+rendered and inspected at normal size. A source caption was shortened to keep
+it with its quotation. Tables fit, continuation headers remain visible, and
+monochrome labels preserve meaning without color. No new chart, SD/CI or
+theorem was introduced; those checks are not applicable to this count update.
+
+Reviewed PDF SHA256:
+`e97c350a3e056f311e934206930c5c19be580b05f5db98540e5e34305787b271`.
+Snapshot SHA256:
+`64375ea66561930617da4689bb475f4e76e9d593853dc2ae6dcd4ed4de89ade3`.
+Logs are `.harness/verification/swarm-completed-report-*-2026-11-09.log`;
+page previews are `/tmp/swarm-completed-report-pages-20261109/`.
+
+### Open gaps
+
+Lucas and Stefan still need to review the scientific interpretation, supply
+affiliations and confirm official-template visual compliance before submission.
+References and venue requirements were not changed in this results update;
+the earlier source checks remain recorded below. No submission or external
+notification was made. The current title block and PDF metadata retain only
+Lucas Barbosa and Stefan Gazana.
+
+---
+
+## Current manuscript authors updated 2026-11-09
+
+At Lucas's request, the Swarm manuscript now lists only Lucas Barbosa and
+Stefan Gazana in the title block and PDF author metadata. Current brief and
+README attribution agree; historical manuscript attribution is retained.
+Source: `9c49785` plus this authorship edit. `make -C report agentic` passes
+with no LaTeX warnings. PDF metadata and extracted text confirm the two names
+and absence of the three removed names. The rendered title page was inspected;
+the PDF remains fourteen pages. `git diff --check` passes.
+
+Reviewed PDF SHA256:
+`bf1c3caae61cc27d612ba55cc7f78e5f66c9736c9f6c94a513787e6e1b860ddb`.
+
+---
+
 ## Main-branch handoff checked 2026-11-09
 
 The full repository gate passed before the handoff commit, including all 420

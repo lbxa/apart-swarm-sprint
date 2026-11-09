@@ -6,14 +6,16 @@ Build it with `make -C report agentic`; its PDF is `agentic/build/main.pdf`.
 It uses the frozen [cloud-audited swarm snapshot](data/swarm-track-snapshot.json),
 [reproduction guide](agentic/README.md) and [review record](agentic/review.md).
 It separates direct recruitment, repeated exposure and the unmeasured effect
-of network shape. The frozen snapshot includes 71 sessions and 83 cases, with
-both checkout cohorts and played failures retained. Compiled PDFs are local build
+of network shape. The updated registry includes 104 sessions and 116 cases,
+including the completed 57-session C1 campaign, with both checkout cohorts and
+played failures retained. The main text and appendix embed the final C1 counts.
+Compiled PDFs are local build
 products; a source checkout includes the manuscript, numeric snapshots, and
 required figures.
 The earlier [October manuscript](agentic/historical-main.tex) retains its
 13-run, 19-assignment record separately. Neither it nor the older results below
-is pooled with the current replication. The named authors are Lucas Barbosa, Stefan Gazana,
-Sravika Linga, Muskaan Kumar and Jake Fogel.
+is pooled with the current replication. The current manuscript's authors are
+Lucas Barbosa and Stefan Gazana.
 
 ## Earlier baseline report
 

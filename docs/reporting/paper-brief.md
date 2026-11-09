@@ -11,12 +11,13 @@ brief and evidence register below retain their original scope.
 
 | Field | Current claim or constraint |
 | --- | --- |
+| Authors | Lucas Barbosa and Stefan Gazana only, as requested for this manuscript; affiliations unspecified. |
 | Reader | ML and multi-agent safety researchers; explain the difference between direct recruitment, repeated exposure, multi-hop transmission and topology. |
 | Research question | How far does a supplied bad example reach under shared financial incentives, does adoption persist across cases, and which part of the network-shape question is identifiable? |
 | Contribution | Source-pinned cloud audit, factual reveal/capture measurements, an actual prompt-to-rationale-to-action-to-payment example, and an explicit design for the missing topology intervention. |
-| Evidence cutoff | W&B project `lbxa-corp/collusion-benchmark`, 2026-11-09 05:53 UTC / 00:53 EST; 72 matching session artifacts, 71 admitted sessions, 83 cases, seven retained played failures, one setup-only exclusion. Running/unuploaded sessions are outside this frozen snapshot. |
-| Provenance | Both checkout cohorts have byte-identical retained runtime source hashes; config values match within model/cell after normalizing seed and checkout path. C1 has 24 sessions/30 cases, C2 47/53. Repeated seed labels do not create new distinct launch seeds. |
-| Main result | Selected Kimi runs join seeded false majorities at all tested sizes; up to seven of eight evaluated jurors reveal falsely in one fifteen-juror case. Honest-peer controls also contain false votes. Explicit duties yield zero false/twenty truthful reveals in ten cases. |
+| Evidence cutoff | W&B project `lbxa-corp/collusion-benchmark`; completed C1 through 2026-11-09 09:53 UTC / 04:53 EST, retaining the C2 selection frozen at 05:53 UTC / 00:53 EST. The registry has 105 selected artifacts, 104 admitted sessions, 116 cases, eight retained played failures and one setup-only exclusion. |
+| Provenance | Both checkout cohorts have byte-identical retained runtime source hashes; config values match within model/cell after normalizing seed and checkout path. C1 has 57 sessions/63 cases, C2 47/53. The earlier 24 C1 sessions are included once within the 57. Repeated seed labels do not create new distinct launch seeds. |
+| Main result | Completed C1 records 45 false, 77 truthful and 94 absent commitments; 43 false revealers receive the offered credit. Combined Kimi cases join seeded false majorities at all tested sizes, with up to seven of eight evaluated jurors falsely revealing in one fifteen-juror case. Honest-peer controls also contain false votes. Explicit-duty cells yield zero false/32 truthful reveals in 16 cases. |
 | Extent versus speed | Counts establish direct reach and same-case adoption. A three-case session re-seeds the bad peer and offer each time; it is repeated exposure, not proof of autonomous contagion. No causal multi-hop speed or reproduction number is identified. |
 | Network shape | Shared public deliberation exposes everyone directly. Jury size, seed count/fraction, evaluated population and ordinary reward share co-vary, while one more modeled vote always captures a colluding bloc. No topology effect or pure scale effect is identifiable. |
 | Statistics | Descriptive per-model/cell counts, failures and per-case records; votes and repeated cases are dependent. No seat-level interval is used as a population or topology inference. |
@@ -39,20 +40,22 @@ reproduction verifies original bytes before recomputing results.
 | SW4: Repeated Kimi exposure is associated with persistent false majorities. | Four blocks, false-revealer sequences `1,2,2` twice, `1,2,2`, and `0,2,2`; eleven of twelve captured cases. | Re-seeding, continuing accounts, memory and shared chain co-vary. The `0,2,2` block has no payment before onset. Results. |
 | SW5: Network shape is not identified by these experiments. | All primary cells share public deliberation and direct seeded-message exposure; `q-m=1` across sizes; no matched rewiring. | This is a design-identification conclusion, not evidence that shape has no effect. Discussion; equal-edge-count graph proposal is unrun. |
 | SW6: The earlier principles campaign has no false reveal. | Fifty recovered cloud sessions reproduce `report/data/swarm-summary.json`: 390 truthful reveals, ten abstentions; colluding arm 191, honest arm 199. Original file hashes and cloud identities are in `report/data/swarm-principles-source-registry.json`. | The handoff's 397 does not reconcile with these retained sessions and is not used. Separate evidence set, audit appendix. |
+| SW7: The completed C1 plan has 45 false and 77 truthful reveals across 63 cases, retaining 94 absent commitments and two failed sessions. | All 57 run IDs match `harness/research/swarm-scale/cloud-sessions-c1.json`; C1 cells equal `summary-c1.json` and reproduce from the pinned original evidence. | Replaces the earlier 24-run subset; no additional replicate or population rate. Main-text completed-C1 table and Appendix B.3. |
 
 The underlying campaign is not resumed, altered or monitored by this report
 revision. No model calls or cloud writes are needed to prepare it. The new
 graph comparison is a proposed experiment, not an executed result. Subagents
 are unavailable in this side conversation; the review was performed directly.
 
-### C1 campaign completion after the frozen report cutoff
+### Completed C1 results embedded in the manuscript
 
 The campaign handoff completed C1 at **2026-11-09 09:53:18 UTC**. Its 57
 planned runs each appear once: 55 complete and two retained played failures,
-covering 63 cases and 216 evaluated juror seats. This extends the frozen
-registry's 24 C1 runs; the 57 must not be added to those 24 as independent
-observations. C2 and the frozen manuscript tables above retain their separate
-scope and cutoff.
+covering 63 cases and 216 evaluated juror seats. The updated manuscript replaces
+the earlier 24-run C1 subset with the completed 57-run cohort, keeping every
+run ID once. It retains the same 47 C2 sessions and their separate selection
+cutoff. Main-text tables, combined per-cell counts and the cloud appendix now
+cover all 104 played sessions and 116 unique run/case pairs.
 
 The completed C1 evidence contains 45 false reveals (23 Kimi K2.6, 22 Kimi
 K2.7 Code), 77 truthful reveals, 94 absent commitments and zero unrevealed
@@ -64,23 +67,29 @@ absent commitment. DeepSeek has zero false reveals and 44 absent commitments;
 its larger colluding-peer cells have no evaluated reveals. These counts do
 not identify a causal peer-pressure, topology or population effect.
 
-The [completed C1 report](../../harness/research/swarm-scale/RESULTS-C1.md),
+The manuscript's completed-C1 table and the
+[completed C1 report](../../harness/research/swarm-scale/RESULTS-C1.md),
 [per-cell summary](../../harness/research/swarm-scale/summary-c1.json) and
 [case audit](../../harness/research/swarm-scale/cases-c1.csv) retain
 the exact denominators, failures and source hashes. The existing analyzer's
 intervals are nominal: its Wilson fallback uses votes and the three memory
 cases share one block. They are not population or topology intervals.
-The exact operator-ledger sum is **USD 58.21109260716857906166**, including
+The exact C1 operator-ledger sum is **USD 58.21109260716857906166**, including
 three unresolved reservations totaling USD 0.84541440, below the USD 135 cap.
 
 All 57 session uploads to `lbxa-corp/collusion-benchmark` succeeded. The
 [cloud register](../../harness/research/swarm-scale/cloud-sessions-c1.json)
 pins their artifact versions; all 57 downloaded run manifests and 63 case
 evidence files match their retained SHA256 hashes, and the analyzer reproduces
-the complete summary exactly from those cloud downloads. The versioned handoff
-carries public outcome counts, aggregate spending and cloud identities. The
-full operator-ledger/audit packet remains local after automatic approval review
-rejected the additional W&B packet upload. The frozen paper retains its cutoff.
+the complete summary exactly from those cloud downloads. The updated report
+registry also verifies C1 opportunity logs against the pinned artifacts and
+retains the original C2 source-file hashes. Its combined counts are 97 false,
+142 truthful, 149 absent commitments and one unrevealed commitment across
+heterogeneous arms; these are not an aggregate collusion statistic. The
+[refreeze decision](../decisions/report-refreezes-completed-c1-without-double-counting.md)
+supersedes the earlier handoff's choice to leave C1 outside the manuscript.
+The versioned handoff carries public outcome counts, aggregate spending and
+cloud identities; raw operator-ledger rows and agent databases remain local.
 
 ## Historical brief and evidence registers
 

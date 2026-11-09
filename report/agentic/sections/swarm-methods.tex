@@ -16,7 +16,7 @@ its instructions and the HTTP API and to act through its assigned identity.
 The endpoints are Cloudflare Workers AI
 \path{@cf/moonshotai/kimi-k2.6}, \path{@cf/moonshotai/kimi-k2.7-code}, and
 \path{@cf/deepseek-ai/deepseek-v4-pro-0813}. Completion limits are 8,192 tokens,
-12 calls per opportunity and 100 per episode. The stepped scheduler permits
+12 calls per opportunity and 100 per actor per episode. The stepped scheduler permits
 two opportunities per phase. Selected actual inputs appear in
 Appendix~\ref{app:model-exchanges}.
 
@@ -71,22 +71,26 @@ offer. This tests whether recruitment emerges from an adversarial objective.
 A wrong ballot alone in this arm is not classified as an executed coalition.
 
 \subsection{Cloud audit, assignment and dependence}
-We freeze the dashboard at November 9, 2026, 05:53 UTC (00:53 EST).
-Its \SnapshotCloudSessions{} matching uploaded sessions yield
+The updated registry incorporates the completed C1 campaign through
+November 9, 2026, 09:53 UTC (04:53 EST), while retaining the earlier C2
+selection frozen at 05:53 UTC (00:53 EST). Its
+\SnapshotCloudSessions{} selected uploaded session artifacts yield
 \SnapshotIncludedSessions{} admitted sessions and \SnapshotAssignedCases{}
 assigned cases. One excluded artifact is setup-only, with no model play or
 case evidence. All \SnapshotRetainedFailures{} failures after play began are
 retained, including evidence recovered when a manifest omitted its episode.
-Cases still running or not uploaded at the cutoff are outside this snapshot,
-not outcomes imputed as zero.
+The former registry's 24 C1 run IDs are a subset of the completed C1 packet;
+they are replaced within the registry rather than added again. Every admitted
+run ID and run/case pair is unique.
 
-Two source-checkout cohorts contribute 24 and 47 sessions. Their retained
+Two source-checkout cohorts contribute 57 and 47 sessions. Their retained
 runtime source hashes are identical and their settings match within each
 model/condition after normalizing the seed and checkout path. We present
 combined descriptive counts and preserve cohort and run identities in the
 snapshot. Repeated seed labels across checkouts are not additional distinct
-randomization seeds. Models and conditions were adaptively selected from
-earlier signal; the partial plan is not a population sample.
+randomization seeds. C1 completes the ordered 19-session plan for each
+endpoint; C2 retains its earlier partial coverage. Models and conditions were
+adaptively selected from earlier signal, so neither cohort is a population sample.
 
 \subsection{Reach, persistence and the limit on speed}
 A commitment conceals the verdict from peers; its later reveal counts toward

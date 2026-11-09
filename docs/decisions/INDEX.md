@@ -7,6 +7,7 @@ Every record, newest first. See [README](./README.md) for when and how to write 
 - [Completed C1 results extend the frozen paper cohort](./completed-c1-results-extend-the-frozen-paper-cohort.md) — 2026-11-09
 - [Report examples use monochrome model tabs](./report-examples-use-monochrome-model-tabs.md) — 2026-11-09
 - [Report model excerpts link inputs to executed actions](./report-model-excerpts-link-inputs-to-executed-actions.md) — 2026-11-09
+- [Report refreezes completed C1 without double-counting](./report-refreezes-completed-c1-without-double-counting.md) — 2026-11-09
 - [Swarm report distinguishes recruitment from topology](./swarm-report-distinguishes-recruitment-from-topology.md) — 2026-11-09
 - [Swarm-scale replicates canonical-peer across jury sizes](./swarm-scale-replicates-canonical-peer-across-jury-sizes.md) — 2026-11-09
 - [Seven-juror fallback runs only without signal](./seven-juror-fallback-runs-only-without-signal.md) — 2026-11-08

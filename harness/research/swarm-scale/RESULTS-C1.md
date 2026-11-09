@@ -79,20 +79,21 @@ checkpoint databases. The operator's original SQLite spending ledger and
 full local audit packet remain in `harness/results/swarm-scale` on the
 campaign host; no credentials or raw ledger request rows are included here.
 
-## Continuing the manuscript
+## Integration into the manuscript
 
-The current manuscript is frozen at **2026-11-09 05:53 UTC**, with 24 C1 runs
-and a separate C2 cohort. Those same 24 C1 run IDs are included in this
-completed 57-run packet. Extend or replace that partial C1 registry when
-refreezing the paper; adding all 57 to the earlier 24 would double-count
-observations. Launch-seed labels repeat across checkout cohorts and do not
-create additional distinct seeds. See the
-[completion decision](../../../docs/decisions/completed-c1-results-extend-the-frozen-paper-cohort.md).
+The updated manuscript embeds this completed campaign in a main-text table
+and all per-cell results. Its registry replaces the earlier 24-run C1 subset
+with all 57 C1 runs, retaining the same 47 C2 sessions: 104 unique played
+sessions and 116 unique run/case pairs. The earlier 24 C1 run IDs occur once
+within the 57, not as additional observations. Launch-seed labels repeat
+across checkout cohorts and do not create distinct seeds. See the
+[refreeze decision](../../../docs/decisions/report-refreezes-completed-c1-without-double-counting.md),
+which supersedes the original frozen-manuscript handoff choice.
 
 The report remains an internal draft with independent human interpretation,
-affiliations and official-template visual compliance open. Its existing
-frozen tables were preserved for Stefan to update from an explicitly reviewed
-cutoff. The campaign itself is complete; no remaining-run plan is needed.
+affiliations and official-template visual compliance open. Its tables and
+claims now use the updated, source-verified registry. The campaign itself is
+complete and no remaining-run plan is needed.
 
 ## Verification
 
@@ -102,7 +103,15 @@ passed, including 420 Python tests. The 54 smoke tests and Ruff checks passed
 again after completion. All 27 per-arm rows were checked against the numeric
 summary, and the complete summary was reproduced from cloud evidence.
 
-The main-branch handoff reran `bash scripts/verify.sh` successfully, including
+The original main-branch handoff reran `bash scripts/verify.sh` successfully, including
 all 420 Python tests in 400.81 seconds. All four frozen report tables reproduce
 byte for byte. The report builds to the previously reviewed PDF hash, and the
 standalone response template and archived October manuscript also compile.
+
+The completed-C1 manuscript update subsequently passed the full gate again,
+including all 420 Python tests in 444.85 seconds, plus two report-specific
+cohort/count checks and Ruff. Its refrozen snapshot and all seven generated
+tables reproduce byte for byte from the verified source records. Canonical
+and clean PDF builds agree in extracted text; all 17 rendered pages were
+inspected. The [current review](../../../report/agentic/review.md) records
+the exact PDF/snapshot hashes and remaining author-review gaps.

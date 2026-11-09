@@ -8,8 +8,8 @@ question and SW1–SW6 claim mapping; [review.md](review.md) records checks and
 open gaps. The earlier October manuscript is preserved as
 [historical-main.tex](historical-main.tex).
 
-The frozen cloud snapshot admits 71 sessions and 83 cases from two checkout
-cohorts, retaining seven played failures and excluding one setup-only artifact.
+The updated cloud registry admits 104 sessions and 116 cases from two checkout
+cohorts, retaining eight played failures and excluding one setup-only artifact.
 Tables keep false/truthful reveals, abstentions and unrevealed commitments
 separate. Appendix B links every admitted W&B session and pins original file
 hashes in [the numeric snapshot](../data/swarm-track-snapshot.json).
@@ -17,11 +17,12 @@ Appendix C preserves actual inputs, returned reasoning and confirmed actions.
 These are descriptive results, not a population rate or a topology effect.
 
 The [completed C1 handoff](../../harness/research/swarm-scale/RESULTS-C1.md)
-now covers all 57 C1 runs and 63 cases. It includes the same 24 C1 run IDs in
-the frozen paper snapshot, so a new manuscript cutoff must extend or replace
-that partial cohort. Its per-cell summary, case counts and pinned cloud
-register are versioned alongside the handoff for Stefan to continue without
-new model calls. The frozen manuscript tables retain their original cutoff.
+now covers all 57 C1 runs and 63 cases. These completed results are embedded
+in the main text and replace the earlier 24-run C1 subset in every report
+table and cloud-register entry. The same 47 C2 sessions retain their earlier
+selection cutoff. The complete C1 per-cell summary, case counts and pinned
+cloud register are also versioned alongside the handoff. No model calls are
+needed to reproduce the updated report.
 
 From the repository root:
 
@@ -71,7 +72,15 @@ reviews, and keep ambiguous cases distinct.
 
 ### 2026-11-09
 
-- Keep the completed C1 packet separate from the frozen manuscript registry:
+- Embed completed C1 results in the main text and refreeze the source registry
+  at 104 played sessions/116 cases. Replace the overlapping partial C1 selection
+  and preserve the earlier C2 cohort; the
+  [refreeze decision](../../docs/decisions/report-refreezes-completed-c1-without-double-counting.md)
+  supersedes the original frozen-handoff choice.
+- Limit the current Swarm manuscript's title block and PDF author metadata to
+  Lucas Barbosa and Stefan Gazana, as requested. The October archive retains
+  its historical attribution.
+- The original handoff kept the completed C1 packet separate from the manuscript:
   existing run IDs overlap, so a completion update extends the cohort rather
   than adding independent observations. See the
   [completion decision](../../docs/decisions/completed-c1-results-extend-the-frozen-paper-cohort.md).

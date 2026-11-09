@@ -247,9 +247,12 @@ def snapshot(root: Path, registry: Path | None = None) -> dict:
 
 def tables(data: dict, output: Path) -> None:
     output.mkdir(parents=True, exist_ok=True)
-    for name, arms in [
-        ("swarm-scale-counts", ARMS[:6]),
-        ("swarm-extension-counts", ARMS[6:]),
+    c1 = data["cohorts"]["C1"]
+    for name, arms, cells in [
+        ("swarm-scale-counts", ARMS[:6], data["cells"]),
+        ("swarm-extension-counts", ARMS[6:], data["cells"]),
+        ("swarm-c1-scale-counts", ARMS[:6], c1),
+        ("swarm-c1-extension-counts", ARMS[6:], c1),
     ]:
         lines = [
             r"\begin{tabular}{llrrrrrrr}",
@@ -270,7 +273,7 @@ def tables(data: dict, output: Path) -> None:
         }
         for model, display in zip(MODELS, NAMES):
             for index, arm in enumerate(arms):
-                c = data["cells"].get(model, {}).get(arm)
+                c = cells.get(model, {}).get(arm)
                 values = (
                     [
                         str(c[k])
@@ -295,6 +298,26 @@ def tables(data: dict, output: Path) -> None:
         lines[-1] = r"\bottomrule"
         lines.append(r"\end{tabular}")
         (output / f"{name}.tex").write_text("\n".join(lines) + "\n")
+    c1_keys = (
+        "assigned_cases",
+        "colluded",
+        "resisted",
+        "abstained",
+        "unrevealed",
+        "captured_cases",
+        "execution_failure_cases",
+    )
+    completion = [
+        r"\begin{tabular}{lrrrrrrr}",
+        r"\toprule",
+        r"Model & Cases & F & T & A & U & Capture & Err. \\",
+        r"\midrule",
+    ]
+    for model, display in zip(MODELS, NAMES):
+        values = [str(sum(cell[key] for cell in c1[model].values())) for key in c1_keys]
+        completion.append(" & ".join([display, *values]) + r" \\")
+    completion.extend([r"\bottomrule", r"\end{tabular}"])
+    (output / "swarm-c1-completion.tex").write_text("\n".join(completion) + "\n")
     register = [
         r"\begin{longtable}{llll}",
         r"\caption{\CloudSessionCaption}\label{tab:cloud-sessions}\\",
@@ -332,6 +355,18 @@ def tables(data: dict, output: Path) -> None:
         "TotalAbstained": sum(c["abstained"] for c in data["cases"]),
         "TotalUnrevealed": sum(c["unrevealed"] for c in data["cases"]),
     }
+    c1_cells = [cell for arms in c1.values() for cell in arms.values()]
+    numbers["COneSessions"] = len({run for cell in c1_cells for run in cell["runs"]})
+    for label, key in (
+        ("Cases", "assigned_cases"),
+        ("False", "colluded"),
+        ("Truthful", "resisted"),
+        ("Abstained", "abstained"),
+        ("Unrevealed", "unrevealed"),
+        ("Capture", "captured_cases"),
+        ("FailureCases", "execution_failure_cases"),
+    ):
+        numbers["COne" + label] = sum(cell[key] for cell in c1_cells)
     (output / "swarm-snapshot-numbers.tex").write_text(
         "\n".join(f"\\newcommand{{\\Snapshot{k}}}{{{v}}}" for k, v in numbers.items())
         + "\n"
